@@ -13,4 +13,4 @@ generates the trajectories and data needed for execution of of movement on the t
 
 Jonas Weigand
 jonas.weigand@mv.uni-kl.de
-03 - 03 - 2021
+03.03.2021
