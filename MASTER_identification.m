@@ -81,7 +81,7 @@ opt_surrogate.UseParallel = true;
 %  ------------------------------------------------------------------------
 
 
-z = load('data.mat');
+z = load('data/data_recorded.mat');
 
 
 
