@@ -19,55 +19,49 @@ z.opt.m_pay_idx      = 5*n_axis + 1;
 z.opt.weightState    = [1e-5*ones(n_axis,1); 1e-3*ones(n_axis,1)];
 z.opt.weightTorque   = ones(n_axis,1);
 
-regOptVec      = [1e-8, 1e-8, 5e-8, 1e-8, 1e-3;
-    1e-8, 1e-8, 5e-8, 1e-8, 1e-3;
-    1e-8, 1e-8, 5e-8, 1e-8, 1e-3;
-    1e-8, 1e-8, 5e-8, 1e-8, 1e-3;
-    1e-8, 1e-8, 5e-8, 1e-8, 1e-3;
-    1e-8, 1e-8, 5e-8, 1e-8, 1e-3];
+regOptVec      = [1e-8, 1e-8, 5e-8, 1e-8, 1e-2;
+                  1e-8, 1e-8, 5e-8, 1e-8, 1e-2;
+                  1e-8, 1e-8, 5e-8, 1e-8, 1e-2;
+                  1e-8, 1e-8, 5e-8, 1e-8, 1e-2;
+                  1e-8, 1e-8, 5e-8, 1e-8, 1e-2;
+                  1e-8, 1e-8, 5e-8, 1e-8, 1e-2];
 
 regOptVec = reshape(regOptVec, [], 1);
 regOptVec = [regOptVec; 1e-8];
 
-scaleOptVec    = [5e2,  1e2,  5e2,  5e2,  5e0;
-    5e2,  1e1,  1e2,  5e3,  1e1;
-    5e2,  1e2,  1e2,  5e3,  1e1;
-    1e2,  1e2,  5e1,  5e2,  1e1;
-    1e2,  1e2,  5e1,  5e2,  1e1;
-    1e2,  1e2,  5e1,  5e2,  1e1];
+scaleOptVec    = [5e2,  2e1,  5e1,  5e2,  5e0;
+                  5e2,  2e1,  1e2,  5e3,  1e1;
+                  5e2,  2e1,  5e1,  5e3,  1e1;
+                  1e2,  2e1,  1e1,  5e2,  1e1;
+                  1e2,  2e1,  1e1,  5e2,  1e1;
+                  1e2,  2e1,  1e1,  5e2,  1e1];
 
 scaleOptVec = reshape(scaleOptVec, [], 1);
 scaleOptVec = [scaleOptVec; 1];
 
-lb    = [0.1,  0.1,  0.1,  0.1,  -10;
-        0.1,  0.1,  0.1,  0.1,  -10;
-        0.1,  0.1,  0.1,  0.1,  -10;
-        0.1,  0.1,  0.1,  0.1,  -10;
-        0.1,  0.1,  0.1,  0.1,  -10;
-        0.1,  0.1,  0.1,  0.1,  -10];
+lb    = [0.1,  0.1,  0.1,  0.1,  -5;
+         0.1,  0.1,  0.1,  0.1,  -5;
+         0.1,  0.1,  0.1,  0.1,  -5;
+         0.1,  0.1,  0.1,  0.1,  -5;
+         0.1,  0.1,  0.1,  0.1,  -5;
+         0.1,  0.1,  0.1,  0.1,  -5];
 
 lb = reshape(lb, [], 1);
 lb = [lb; 1];    
     
-ub    = [10,  10,  10,  10,  10;
-        10,  10,  10,  10,  10;
-        10,  10,  10,  10,  10;
-        10,  10,  10,  10,  10;
-        10,  10,  10,  10,  10;
-        10,  10,  10,  10,  10];
+ub    = [10,  10,  10,  10,  5;
+        10,  10,  10,  10,  5;
+        10,  10,  10,  10,  5;
+        10,  10,  10,  10,  5;
+        10,  10,  10,  10,  5;
+        10,  10,  10,  10,  5];
 
 ub = reshape(ub, [], 1);
 ub = [ub; 5];        
     
-trueOptVecAll =[    3.9842      3.0052         0.1      2.3607      3.9551;
-    3.9624      7.2714      4.0745      7.5455     -4.6615           ;
-    3.7782      1.2344      2.1174       3.401      1.5218           ;
-    4.5366      0.3434     0.32093      1.6749     -2.1199            ;
-    10          0.1     0.734679      9.71012     0.493372           ;
-    4.588     0.15449      1.2136      4.9306      0.3674             ];
+ident_results = load('data/ident_results.mat', 'estOptVecAll');
 
-trueOptVecAll = reshape(trueOptVecAll, [], 1);
-trueOptVecAll = [trueOptVecAll; 3];    
+trueOptVecAll = reshape( ident_results.estOptVecAll, [], 1);
 
 % check parameters
 for k_ax = 1:n_axis

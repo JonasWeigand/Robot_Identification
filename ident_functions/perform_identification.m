@@ -28,10 +28,8 @@ if enable_identification
     end
     
     
-    tic
     [estOptVecAll, fval, ~, ~, trails] = surrogateopt(optFun, lb, ub, [], opt_surr);
     estOptVecAll = reshape(estOptVecAll, [], 1);
-    toc
     
     save('data/ident_results.mat','estOptVecAll','initOptVecAll','trueOptVecAll','lb',...
         'ub','z', 'fval', 'trails');

@@ -26,30 +26,6 @@ qd(:)     = x(static.n_axis+1:end); % velocity
 
 
 
-
-
-% size(x_dot)
-% size(q_r)
-% size(q_r_d1)
-% size(tau_dist)
-% size(tau_ff)
-% size(q)
-% size(qd)
-
-
-
-%% disable feed forward
-
-
-% tau_ff = 0;
-% phi_r_m = u * phi_r;
-% phi_r_m_d1 = u * phi_r_d1;
-
-
-
-
-
-
 %% override with values for optimisation
 % use the nominal model for the feed forward terms
 
@@ -65,7 +41,6 @@ m_payload   = scaledOptVec(static.m_pay_idx);
 
 
 %% calculate gravity, coriolis, inertia
-
 
 
 if t_disc == 1 || norm(q - dyn.q_update) > static.q_update_threshold || norm(qd - dyn.qd_update) > static.qd_update_threshold
@@ -110,13 +85,6 @@ end
 % continous differentiable sign of the link velocity
 f_sign = tanh(s_f_ode .* qd);
 
-% friction model 2
-% Ding,
-% Nonlinear Friction and Dynamical Identification for a Robot
-% Manipulator with Improved Cuckoo Search Algorithm
-% OR
-% Grotjahn
-% Friction and rigid body identification of robot dynamics
 tau_f = f_asym + f_vis.*qd + f_coul.*f_sign + f_a.*tanh(f_b .* qd);
 
 

@@ -13,8 +13,12 @@ clc
 
 % enable plots
 enable_plot_ident_torque        = true;
-enable_plot_ident_pos           = true;
-enable_plot_ident_vel           = true;
+enable_plot_ident_pos           = false;
+enable_plot_ident_vel           = false;
+
+% enable command line results
+enable_command_line_res         = true;
+enable_command_line_bounds      = true;
 
 % select which axis to plots
 % integers for each joints, from 1 to 6
@@ -36,7 +40,7 @@ enable_disturbance_torque       = false;
 % compute simulator using MEX files
 % MEX files must be recompiled, if a different data intervall length is
 % applied
-enable_MEX                      = true;
+enable_MEX                      = false;
 
 % offset the cost function for the first x seconds
 % increases robustness to unknown initial states of the robot
@@ -58,6 +62,11 @@ keep_last_points                = 0.8;
 % print results with tikz
 enable_print_results_tikz       = false;
 
+% enable feed forward model in the identification
+% required to apply different models in the identification 
+% and the feed forward torque
+enable_ff_torque                = false;
+
 
 % threshold for update of the inertia, gravity and corilis matrix
 % robot needs to move x degrees and y degree per second before the update
@@ -69,8 +78,8 @@ qd_update_threshold             = deg2rad(2);
 % options for the surrogate solver
 opt_surrogate = optimoptions('surrogateopt');
 opt_surrogate.Display = 'iter';
-opt_surrogate.MaxTime = 15*60;
-opt_surrogate.MaxFunctionEvaluations = 200;
+opt_surrogate.MaxTime = 60;
+opt_surrogate.MaxFunctionEvaluations = 100;
 opt_surrogate.MinSampleDistance = 1e-1;
 opt_surrogate.UseParallel = true;
 
@@ -95,6 +104,8 @@ z.qd_update_threshold           = qd_update_threshold;
 z.enable_MEX                    = enable_MEX;
 z.enable_cost_fun_offset        = enable_cost_fun_offset;
 z.enable_train_filt             = enable_train_filt;
+z.enable_ff_torque              = enable_ff_torque;
+
 
 [z, time_cont_sim] = initialise_time(z, ...
     enable_load_recorded_data, cost_fun_offset_sec);
@@ -106,7 +117,7 @@ z = initialise_model(z, enable_disturbance_torque);
     enable_random_init);
 
 [meas, x0] = initialise_data(z, ...
-    trueOptVecAll, enable_load_recorded_data, enable_additional_noise);
+    enable_load_recorded_data, enable_additional_noise);
 
 
 
@@ -122,18 +133,18 @@ z = initialise_model(z, enable_disturbance_torque);
 
 
 
-
+tic
 
 estOptVecAll = perform_identification(z, meas, time_cont_sim, x0, ...
     enable_warm_start_ident, enable_identification,...
     keep_last_points, trueOptVecAll, initOptVecAll, ...
     lb, ub, opt_surrogate);
 
+t_end = toc;
 
 
-
-
-
+display_command_line_results(z, estOptVecAll, t_end,...
+    enable_command_line_res, enable_command_line_bounds, lb, ub);
 
 
 

@@ -11,7 +11,8 @@ if enable_load_recorded_data
     time_cont_data   = z.sim.time_cont_data;
     n_axis           = z.n_axis;
     
-    load('data/data_recorded.mat', 'rec');
+    % load('data/data_recorded.mat', 'rec');
+    rec = z.rec;
     
     deg_to_rad = 2*pi/360;
     

@@ -8,6 +8,10 @@ static.phi_r_d1     = z.sim.phi_r_all_d1';    % reference link velocity
 static.tau_dist     = z.sim.tau_dist';        % disturbance torque
 static.tau_ff       = z.sim.tau_ff_all';      % feed forward torque
 
+if not(z.enable_ff_torque)
+    static.tau_ff(:) = 0;
+end
+
 % axis dependend parameters
 static.K_pos_eff    = z.para.K_pos_eff;     % position control parameter
 static.K_vel_eff    = z.para.K_vel_eff;     % veclotiy control parameter
@@ -18,12 +22,12 @@ static.x_init       = zeros(12, 1);
 static.n_axis       = 6;
 
 % define indizes of opt variables
-static.f_vis_idx      = 0*static.n_axis + (1:static.n_axis);
-static.f_coul_idx     = 1*static.n_axis + (1:static.n_axis);
-static.f_a_idx        = 2*static.n_axis + (1:static.n_axis);
-static.f_b_idx        = 3*static.n_axis + (1:static.n_axis);
-static.f_asym_idx     = 4*static.n_axis + (1:static.n_axis);
-static.m_pay_idx      = 5*static.n_axis + 1;
+static.f_vis_idx      = z.opt.f_vis_idx;
+static.f_coul_idx     = z.opt.f_coul_idx;
+static.f_a_idx        = z.opt.f_a_idx;
+static.f_b_idx        = z.opt.f_b_idx;
+static.f_asym_idx     = z.opt.f_asym_idx;
+static.m_pay_idx      = z.opt.m_pay_idx;
 
 static.q_update_threshold   = z.q_update_threshold;
 static.qd_update_threshold  = z.qd_update_threshold;
