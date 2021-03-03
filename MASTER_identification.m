@@ -1,9 +1,20 @@
 function MASTER_identification
 
+%% Identify the parameters of an Industrial robot
+
+% Jonas Weigand
+% 03.03.2021
+
+
 addpath('symbolic_code', 'ident_functions', 'data')
 
 beep off
+close all
 clc
+
+
+
+
 
 %% ------------------------------------------------------------------------
 %  ------------- SETTINGS -------------------------------------------------
@@ -13,12 +24,14 @@ clc
 
 % enable plots
 enable_plot_ident_torque        = true;
-enable_plot_ident_pos           = false;
-enable_plot_ident_vel           = false;
+enable_plot_ident_pos           = true;
+enable_plot_ident_vel           = true;
 
-% enable command line results
+% print identified parameters in command line
 enable_command_line_res         = true;
-enable_command_line_bounds      = true;
+
+% print bounds for the identified parameters in command line
+enable_command_line_bounds      = false;
 
 % select which axis to plots
 % integers for each joints, from 1 to 6
@@ -40,7 +53,7 @@ enable_disturbance_torque       = false;
 % compute simulator using MEX files
 % MEX files must be recompiled, if a different data intervall length is
 % applied
-enable_MEX                      = false;
+enable_MEX                      = true;
 
 % offset the cost function for the first x seconds
 % increases robustness to unknown initial states of the robot
