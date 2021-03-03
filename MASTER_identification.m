@@ -80,6 +80,9 @@ enable_print_results_tikz       = false;
 % and the feed forward torque
 enable_ff_torque                = false;
 
+% enable fixed integer classes for payload identification
+enable_mixed_integer_opt        = false;
+
 
 % threshold for update of the inertia, gravity and corilis matrix
 % robot needs to move x degrees and y degree per second before the update
@@ -150,6 +153,7 @@ tic
 
 estOptVecAll = perform_identification(z, meas, time_cont_sim, x0, ...
     enable_warm_start_ident, enable_identification,...
+    enable_mixed_integer_opt,...
     keep_last_points, trueOptVecAll, initOptVecAll, ...
     lb, ub, opt_surrogate);
 

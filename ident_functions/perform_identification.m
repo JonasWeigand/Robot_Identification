@@ -1,7 +1,8 @@
-function estOptVecAll = perform_identification(z, meas, time_cont_sim, x0, ...
+function    estOptVecAll = perform_identification(z, meas, time_cont_sim, x0, ...
     enable_warm_start_ident, enable_identification,...
-    keep_last_points, trueOptVecAll, initOptVecAll, lb, ub,...
-    opt_surr)
+    enable_mixed_integer_opt,...
+    keep_last_points, trueOptVecAll, initOptVecAll, ...
+    lb, ub, opt_surrogate)
 
 
 if enable_identification
@@ -24,11 +25,19 @@ if enable_identification
         ident_results.trails.X                  = ident_results.trails.X(idx_rand_keep, :);
         ident_results.trails.Fval               = ident_results.trails.Fval(idx_rand_keep, :);
         
-        opt_surr.InitialPoints = ident_results.trails;
+        opt_surrogate.InitialPoints = ident_results.trails;
     end
     
     
-    [estOptVecAll, fval, ~, ~, trails] = surrogateopt(optFun, lb, ub, [], opt_surr);
+    if enable_mixed_integer_opt
+        intcon = numel(lb);
+        
+    else
+        intcon = [];
+    end
+    
+    
+    [estOptVecAll, fval, ~, ~, trails] = surrogateopt(optFun, lb, ub, intcon, opt_surrogate);
     estOptVecAll = reshape(estOptVecAll, [], 1);
     
     save('data/ident_results.mat','estOptVecAll','initOptVecAll','trueOptVecAll','lb',...

@@ -1,5 +1,10 @@
 function [xAllTrue, torqueTrue, meas, z] = load_recorded_data( z )
 
+
+aaa
+
+
+
 i_ax             = z.i_ax;
 u                = z.para.u;
 time_cont_sim    = z.sim.time_cont_sim;

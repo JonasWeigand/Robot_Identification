@@ -1,5 +1,6 @@
 function [M_inverse, C, G] = model_payload(q, qd, m_pay)
 
+aaa
 
 % transfer from relative to global coordiantes
 qs = [0 -pi/2 pi/2 0 0 0];
