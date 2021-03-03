@@ -1,5 +1,5 @@
 function [meas, x0] = initialise_data(z, ...
-    trueOptVecAll, enable_load_recorded_data, enable_noise)
+    enable_load_recorded_data, enable_noise)
 
 
 if enable_load_recorded_data
@@ -11,7 +11,7 @@ if enable_load_recorded_data
     time_cont_data   = z.sim.time_cont_data;
     n_axis           = z.n_axis;
     
-    load('data.mat', 'rec');
+    load('data/data_recorded.mat', 'rec');
     
     deg_to_rad = 2*pi/360;
     
@@ -46,7 +46,7 @@ if enable_load_recorded_data
         torqueTrue = torqueFilt;
     end
     
-    meas.torqueMeas     = torqueTrue       ; % torques
+    meas.torqueMeas     = torqueTrue;
     meas.torqueFilt     = torqueFilt;
     meas.torqueInit     = torqueInit;
     meas.xAll           = xAllTrue;
@@ -81,20 +81,17 @@ end
 
 
 
-% if enable_noise
-%     
-%     if z.enable_load_recorded_data
-%         warning('add additional noise to recorded data.')
-%     end
-%     
-%     meas.xAll         = xAllTrue'        + 0.5*randn(nt_sim,n_states_per_axis*n_axis)'; % link angle;
-%     meas.torqueMeas   = torqueTrue       + 0.2*randn(nt_sim,n_axis); % torques
-%     
-% else
-%     
-%     meas.xAll         = xAllTrue';
-%     meas.torqueMeas   = torqueTrue       ; % torques
-%     
-% end
+if enable_noise
+    
+    if enable_load_recorded_data
+        warning('add additional noise to recorded data.')
+    end
+    
+    meas.torqueMeas     = torqueTrue    + 0.5*randn(size(torqueTrue));
+    meas.torqueFilt     = torqueFilt    + 0.5*randn(size(torqueFilt));
+    meas.torqueInit     = torqueInit    + 0.5*randn(size(torqueInit));
+    meas.xAll           = xAllTrue      + 0.2*randn(size(xAllTrue));
+    
+end
 
 end
