@@ -5,7 +5,7 @@
  *
  * _coder_runge_kutta_4_info.h
  *
- * Code generation for function '_coder_runge_kutta_4_info'
+ * Code generation for function 'runge_kutta_4'
  *
  */
 

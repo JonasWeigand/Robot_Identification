@@ -12,20 +12,20 @@
 #pragma once
 
 /* Include files */
+#include "rtwtypes.h"
+#include "runge_kutta_4_types.h"
+#include "emlrt.h"
+#include "mex.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "mex.h"
-#include "emlrt.h"
-#include "rtwtypes.h"
-#include "runge_kutta_4_types.h"
 
 /* Function Declarations */
-MEXFUNCTION_LINKAGE void runge_kutta_4_mexFunction(runge_kutta_4StackData *SD,
-  int32_T nlhs, mxArray *plhs[2], int32_T nrhs, const mxArray *prhs[5]);
 MEXFUNCTION_LINKAGE void mexFunction(int32_T nlhs, mxArray *plhs[], int32_T nrhs,
   const mxArray *prhs[]);
 emlrtCTX mexFunctionCreateRootTLS(void);
+void runge_kutta_4_mexFunction(runge_kutta_4StackData *SD, int32_T nlhs, mxArray
+  *plhs[2], int32_T nrhs, const mxArray *prhs[5]);
 
 /* End of code generation (_coder_runge_kutta_4_mex.h) */

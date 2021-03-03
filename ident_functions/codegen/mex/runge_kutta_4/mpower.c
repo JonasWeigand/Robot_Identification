@@ -12,107 +12,106 @@
 /* Include files */
 #include "mpower.h"
 #include "eml_int_forloop_overflow_check.h"
-#include "mwmathutil.h"
 #include "rt_nonfinite.h"
-#include "runge_kutta_4.h"
 #include "warning.h"
+#include "mwmathutil.h"
 #include <string.h>
 
 /* Variable Definitions */
 static emlrtRSInfo mi_emlrtRSI = { 49, /* lineNo */
   "mpower",                            /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\lib\\matlab\\ops\\mpower.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/ops/mpower.m"/* pathName */
 };
 
 static emlrtRSInfo ni_emlrtRSI = { 78, /* lineNo */
   "matrix_to_scalar_power",            /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\lib\\matlab\\ops\\mpower.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/ops/mpower.m"/* pathName */
 };
 
 static emlrtRSInfo oi_emlrtRSI = { 13, /* lineNo */
   "matrix_to_integer_power",           /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\lib\\matlab\\ops\\private\\matrix_to_integer_power.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/ops/private/matrix_to_integer_power.m"/* pathName */
 };
 
 static emlrtRSInfo pi_emlrtRSI = { 75, /* lineNo */
   "matrix_to_small_integer_power",     /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\lib\\matlab\\ops\\private\\matrix_to_integer_power.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/ops/private/matrix_to_integer_power.m"/* pathName */
 };
 
 static emlrtRSInfo qi_emlrtRSI = { 21, /* lineNo */
   "inv",                               /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\lib\\matlab\\matfun\\inv.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/matfun/inv.m"/* pathName */
 };
 
 static emlrtRSInfo ri_emlrtRSI = { 22, /* lineNo */
   "inv",                               /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\lib\\matlab\\matfun\\inv.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/matfun/inv.m"/* pathName */
 };
 
 static emlrtRSInfo si_emlrtRSI = { 173,/* lineNo */
   "invNxN",                            /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\lib\\matlab\\matfun\\inv.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/matfun/inv.m"/* pathName */
 };
 
 static emlrtRSInfo ti_emlrtRSI = { 30, /* lineNo */
   "xgetrf",                            /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\eml\\+coder\\+internal\\+lapack\\xgetrf.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/eml/+coder/+internal/+lapack/xgetrf.m"/* pathName */
 };
 
 static emlrtRSInfo ui_emlrtRSI = { 50, /* lineNo */
   "xzgetrf",                           /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\eml\\+coder\\+internal\\+reflapack\\xzgetrf.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/eml/+coder/+internal/+reflapack/xzgetrf.m"/* pathName */
 };
 
 static emlrtRSInfo vi_emlrtRSI = { 58, /* lineNo */
   "xzgetrf",                           /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\eml\\+coder\\+internal\\+reflapack\\xzgetrf.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/eml/+coder/+internal/+reflapack/xzgetrf.m"/* pathName */
 };
 
 static emlrtRSInfo wi_emlrtRSI = { 21, /* lineNo */
   "eml_int_forloop_overflow_check",    /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\lib\\matlab\\eml\\eml_int_forloop_overflow_check.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/eml/eml_int_forloop_overflow_check.m"/* pathName */
 };
 
 static emlrtRSInfo xi_emlrtRSI = { 45, /* lineNo */
   "xgeru",                             /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\eml\\+coder\\+internal\\+blas\\xgeru.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/eml/+coder/+internal/+blas/xgeru.m"/* pathName */
 };
 
 static emlrtRSInfo yi_emlrtRSI = { 45, /* lineNo */
   "xger",                              /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\eml\\+coder\\+internal\\+blas\\xger.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/eml/+coder/+internal/+blas/xger.m"/* pathName */
 };
 
 static emlrtRSInfo aj_emlrtRSI = { 15, /* lineNo */
   "xger",                              /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\eml\\+coder\\+internal\\+refblas\\xger.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/eml/+coder/+internal/+refblas/xger.m"/* pathName */
 };
 
 static emlrtRSInfo bj_emlrtRSI = { 54, /* lineNo */
   "xgerx",                             /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\eml\\+coder\\+internal\\+refblas\\xgerx.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/eml/+coder/+internal/+refblas/xgerx.m"/* pathName */
 };
 
 static emlrtRSInfo cj_emlrtRSI = { 42, /* lineNo */
   "checkcond",                         /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\lib\\matlab\\matfun\\inv.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/matfun/inv.m"/* pathName */
 };
 
 static emlrtRSInfo dj_emlrtRSI = { 46, /* lineNo */
   "checkcond",                         /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\lib\\matlab\\matfun\\inv.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/matfun/inv.m"/* pathName */
 };
 
 static emlrtMCInfo c_emlrtMCI = { 53,  /* lineNo */
   19,                                  /* colNo */
   "flt2str",                           /* fName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\eml\\+coder\\+internal\\flt2str.m"/* pName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/eml/+coder/+internal/flt2str.m"/* pName */
 };
 
 static emlrtRSInfo ij_emlrtRSI = { 53, /* lineNo */
   "flt2str",                           /* fcnName */
-  "C:\\Program Files\\MATLAB\\R2020a\\toolbox\\eml\\eml\\+coder\\+internal\\flt2str.m"/* pathName */
+  "/usr/local/MATLAB/R2020b/toolbox/eml/eml/+coder/+internal/flt2str.m"/* pathName */
 };
 
 /* Function Declarations */
@@ -147,7 +146,7 @@ static void emlrt_marshallIn(const emlrtStack *sp, const mxArray
   *a__output_of_sprintf_, const char_T *identifier, char_T y[14])
 {
   emlrtMsgIdentifier thisId;
-  thisId.fIdentifier = (const char *)identifier;
+  thisId.fIdentifier = (const char_T *)identifier;
   thisId.fParent = NULL;
   thisId.bParentIsCell = false;
   b_emlrt_marshallIn(sp, emlrtAlias(a__output_of_sprintf_), &thisId, y);
@@ -166,33 +165,10 @@ static void s_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src, const
 
 void mpower(const emlrtStack *sp, const real_T a[36], real_T c[36])
 {
-  real_T x[36];
-  int32_T n;
-  int32_T j;
-  int8_T ipiv[6];
-  int32_T b;
-  int32_T jj;
-  int32_T jp1j;
-  int32_T k;
-  int8_T p[6];
-  int32_T iy;
-  int32_T ix;
-  real_T smax;
-  int32_T jA;
-  real_T s;
-  real_T n1x;
-  boolean_T exitg1;
-  real_T n1xinv;
-  const mxArray *y;
-  const mxArray *m;
   static const int32_T iv[2] = { 1, 6 };
 
   static const char_T rfmt[6] = { '%', '1', '4', '.', '6', 'e' };
 
-  const mxArray *b_y;
-  const mxArray *m1;
-  char_T str[14];
-  emlrtStack st;
   emlrtStack b_st;
   emlrtStack c_st;
   emlrtStack d_st;
@@ -205,6 +181,29 @@ void mpower(const emlrtStack *sp, const real_T a[36], real_T c[36])
   emlrtStack k_st;
   emlrtStack l_st;
   emlrtStack m_st;
+  emlrtStack st;
+  const mxArray *b_y;
+  const mxArray *m;
+  const mxArray *y;
+  real_T x[36];
+  real_T n1x;
+  real_T n1xinv;
+  real_T s;
+  real_T smax;
+  int32_T b;
+  int32_T b_tmp;
+  int32_T ijA;
+  int32_T ix;
+  int32_T iy;
+  int32_T j;
+  int32_T jp1j;
+  int32_T k;
+  int32_T n;
+  char_T str[14];
+  int8_T ipiv[6];
+  int8_T p[6];
+  int8_T i;
+  boolean_T exitg1;
   st.prev = sp;
   st.tls = sp->tls;
   st.site = &mi_emlrtRSI;
@@ -245,13 +244,12 @@ void mpower(const emlrtStack *sp, const real_T a[36], real_T c[36])
   }
 
   for (j = 0; j < 5; j++) {
-    b = j * 7;
-    jj = j * 7;
-    jp1j = b + 2;
+    b_tmp = j * 7;
+    jp1j = b_tmp + 2;
     n = 6 - j;
     iy = 0;
-    ix = b;
-    smax = muDoubleScalarAbs(x[jj]);
+    ix = b_tmp;
+    smax = muDoubleScalarAbs(x[b_tmp]);
     for (k = 2; k <= n; k++) {
       ix++;
       s = muDoubleScalarAbs(x[ix]);
@@ -261,7 +259,7 @@ void mpower(const emlrtStack *sp, const real_T a[36], real_T c[36])
       }
     }
 
-    if (x[jj + iy] != 0.0) {
+    if (x[b_tmp + iy] != 0.0) {
       if (iy != 0) {
         iy += j;
         ipiv[j] = (int8_T)(iy + 1);
@@ -275,39 +273,39 @@ void mpower(const emlrtStack *sp, const real_T a[36], real_T c[36])
         }
       }
 
-      jA = (jj - j) + 6;
+      b = (b_tmp - j) + 6;
       h_st.site = &ui_emlrtRSI;
-      for (ix = jp1j; ix <= jA; ix++) {
-        x[ix - 1] /= x[jj];
+      for (ix = jp1j; ix <= b; ix++) {
+        x[ix - 1] /= x[b_tmp];
       }
     }
 
     n = 4 - j;
-    iy = b + 6;
+    iy = b_tmp + 6;
     h_st.site = &vi_emlrtRSI;
     i_st.site = &xi_emlrtRSI;
     j_st.site = &yi_emlrtRSI;
     k_st.site = &aj_emlrtRSI;
-    jA = jj + 8;
-    for (jp1j = 0; jp1j <= n; jp1j++) {
+    jp1j = b_tmp + 8;
+    for (k = 0; k <= n; k++) {
       smax = x[iy];
       if (x[iy] != 0.0) {
-        ix = jj + 1;
-        b = (jA - j) + 4;
+        ix = b_tmp + 1;
+        b = (jp1j - j) + 4;
         l_st.site = &bj_emlrtRSI;
-        if ((jA <= b) && (b > 2147483646)) {
+        if ((jp1j <= b) && (b > 2147483646)) {
           m_st.site = &wi_emlrtRSI;
           check_forloop_overflow_error(&m_st);
         }
 
-        for (k = jA; k <= b; k++) {
-          x[k - 1] += x[ix] * -smax;
+        for (ijA = jp1j; ijA <= b; ijA++) {
+          x[ijA - 1] += x[ix] * -smax;
           ix++;
         }
       }
 
       iy += 6;
-      jA += 6;
+      jp1j += 6;
     }
   }
 
@@ -316,39 +314,40 @@ void mpower(const emlrtStack *sp, const real_T a[36], real_T c[36])
   }
 
   for (k = 0; k < 5; k++) {
-    if (ipiv[k] > k + 1) {
-      jA = ipiv[k] - 1;
-      iy = p[jA];
-      p[jA] = p[k];
+    i = ipiv[k];
+    if (i > k + 1) {
+      iy = p[i - 1];
+      p[i - 1] = p[k];
       p[k] = (int8_T)iy;
     }
   }
 
   for (k = 0; k < 6; k++) {
-    jp1j = 6 * (p[k] - 1);
-    c[k + jp1j] = 1.0;
+    b = 6 * (p[k] - 1);
+    c[k + b] = 1.0;
     for (j = k + 1; j < 7; j++) {
-      n = (j + jp1j) - 1;
+      n = (j + b) - 1;
       if (c[n] != 0.0) {
-        jA = j + 1;
-        for (ix = jA; ix < 7; ix++) {
-          iy = (ix + jp1j) - 1;
-          c[iy] -= c[n] * x[(ix + 6 * (j - 1)) - 1];
+        iy = j + 1;
+        for (ix = iy; ix < 7; ix++) {
+          jp1j = (ix + b) - 1;
+          c[jp1j] -= c[n] * x[(ix + 6 * (j - 1)) - 1];
         }
       }
     }
   }
 
   for (j = 0; j < 6; j++) {
-    jA = 6 * j;
+    iy = 6 * j;
     for (k = 5; k >= 0; k--) {
-      iy = 6 * k;
-      n = k + jA;
-      if (c[n] != 0.0) {
-        c[n] /= x[k + iy];
+      jp1j = 6 * k;
+      n = k + iy;
+      smax = c[n];
+      if (smax != 0.0) {
+        c[n] = smax / x[k + jp1j];
         for (ix = 0; ix < k; ix++) {
-          jp1j = ix + jA;
-          c[jp1j] -= c[n] * x[ix + iy];
+          b = ix + iy;
+          c[b] -= c[n] * x[ix + jp1j];
         }
       }
     }
@@ -409,8 +408,8 @@ void mpower(const emlrtStack *sp, const real_T a[36], real_T c[36])
       emlrtInitCharArrayR2013a(&f_st, 6, m, &rfmt[0]);
       emlrtAssign(&y, m);
       b_y = NULL;
-      m1 = emlrtCreateDoubleScalar(smax);
-      emlrtAssign(&b_y, m1);
+      m = emlrtCreateDoubleScalar(smax);
+      emlrtAssign(&b_y, m);
       g_st.site = &ij_emlrtRSI;
       emlrt_marshallIn(&g_st, b_sprintf(&g_st, y, b_y, &c_emlrtMCI),
                        "<output of sprintf>", str);

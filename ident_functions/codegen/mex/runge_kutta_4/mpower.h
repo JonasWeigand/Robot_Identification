@@ -12,14 +12,13 @@
 #pragma once
 
 /* Include files */
+#include "rtwtypes.h"
+#include "emlrt.h"
+#include "mex.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "mex.h"
-#include "emlrt.h"
-#include "rtwtypes.h"
-#include "runge_kutta_4_types.h"
 
 /* Function Declarations */
 void mpower(const emlrtStack *sp, const real_T a[36], real_T c[36]);

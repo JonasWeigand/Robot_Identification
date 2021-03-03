@@ -3,10 +3,10 @@ MEX {
 		mexFunction;
 		mexfilerequiredapiversion;
 		emlrtMexFcnProperties;
+		runge_kutta_4;
 		runge_kutta_4_initialize;
 		runge_kutta_4_terminate;
 		runge_kutta_4_atexit;
-		runge_kutta_4;
 	local:
 		*;
 };

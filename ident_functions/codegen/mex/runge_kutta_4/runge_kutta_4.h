@@ -12,14 +12,14 @@
 #pragma once
 
 /* Include files */
+#include "rtwtypes.h"
+#include "runge_kutta_4_types.h"
+#include "emlrt.h"
+#include "mex.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "mex.h"
-#include "emlrt.h"
-#include "rtwtypes.h"
-#include "runge_kutta_4_types.h"
 
 /* Function Declarations */
 void runge_kutta_4(runge_kutta_4StackData *SD, const emlrtStack *sp, const

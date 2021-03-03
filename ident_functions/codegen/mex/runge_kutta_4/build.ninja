@@ -1,24 +1,24 @@
-# CompilerName=mingw64
+# CompilerName=gcc
 # Mode=optim
 ninja_required_version = 1.3
 
 # Basic folders
 root = .
-builddir = $root/build/win64
-matlabdir = C:/Program Files/MATLAB/R2020a
-startdir = C:/Users/Jonas Weigand/OneDrive/MATLAB/21-02-28 Sysident Online Full Robot MEX V7/functions
+builddir = $root/build/glnxa64
+matlabdir = /usr/local/MATLAB/R2020b
+startdir = /home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions
 
 # Toolchain information
-cc = C:\ProgramData\MATLAB\SupportPackages\R2020a\3P.instrset\mingw_w64.instrset\bin\gcc
-cxx = C:\ProgramData\MATLAB\SupportPackages\R2020a\3P.instrset\mingw_w64.instrset\bin\g++
-linker = C:\ProgramData\MATLAB\SupportPackages\R2020a\3P.instrset\mingw_w64.instrset\bin\gcc
-linkerxx = C:\ProgramData\MATLAB\SupportPackages\R2020a\3P.instrset\mingw_w64.instrset\bin\g++
+cc = /usr/bin/gcc
+cxx = g++
+linker = /usr/bin/gcc
+linkerxx = g++
 
-cflags =  -c -fexceptions -fno-omit-frame-pointer -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c99 -I "C:\Users\Jonas Weigand\OneDrive\MATLAB\21-02-28 Sysident Online Full Robot MEX V7\functions\codegen\mex\runge_kutta_4" -I "C:\Users\Jonas Weigand\OneDrive\MATLAB\21-02-28 Sysident Online Full Robot MEX V7\functions" -I "C:\Users\Jonas Weigand\OneDrive\MATLAB\21-02-28 Sysident Online Full Robot MEX V7\functions\codegen\mex\runge_kutta_4\interface" -I "C:\Program Files\MATLAB\R2020a\extern\include" -I "." -DMODEL=runge_kutta_4_mex -D__USE_MINGW_ANSI_STDIO=1  
+cflags =  -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I "$root" -I "$startdir" -I "$root/interface" -I "$matlabdir/extern/include" -I "." -DMODEL=runge_kutta_4_mex -c 
 
-cxxflags =  -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I "C:\Users\Jonas Weigand\OneDrive\MATLAB\21-02-28 Sysident Online Full Robot MEX V7\functions\codegen\mex\runge_kutta_4" -I "C:\Users\Jonas Weigand\OneDrive\MATLAB\21-02-28 Sysident Online Full Robot MEX V7\functions" -I "C:\Users\Jonas Weigand\OneDrive\MATLAB\21-02-28 Sysident Online Full Robot MEX V7\functions\codegen\mex\runge_kutta_4\interface" -I "C:\Program Files\MATLAB\R2020a\extern\include" -I "." -DMODEL=runge_kutta_4_mex -D__USE_MINGW_ANSI_STDIO=1  
+cxxflags =  -fexceptions -fPIC -fno-omit-frame-pointer -pthread -std=c++11 -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c++11 -I "$root" -I "$startdir" -I "$root/interface" -I "$matlabdir/extern/include" -I "." -DMODEL=runge_kutta_4_mex -c 
 
-ldflags =  -m64 -Wl,--no-undefined -shared -static -L"C:\Program Files\MATLAB\R2020a\extern\lib\win64\mingw64" -llibmx -llibmex -llibmat -lm -llibmwlapack -llibmwblas -o "runge_kutta_4_mex.mexw64" -llibemlrt -llibcovrt -llibut -llibmwmathutil  -Wl,--version-script,runge_kutta_4_mex.map
+ldflags =  -pthread -Wl,--no-undefined -Wl,-rpath-link,$matlabdir/bin/glnxa64 -shared  -L"$matlabdir/bin/glnxa64" -lmx -lmex -lmat -lm -lstdc++  -o runge_kutta_4_mex.mexa64 -lemlrt -lcovrt -lut -lmwmathutil  -Wl,--version-script,runge_kutta_4_mex.map
 
 # Build Rules
 rule cc
@@ -28,38 +28,36 @@ rule cxx
     command = $cxx $cxxflags $in -o $out
 
 rule link
-    command = $linker @$out.rsp $ldflags
-    rspfile = $out.rsp
-    rspfile_content = $in
+    command = $linker $in $ldflags
 
 rule linkxx
     command = $linkerxx $in $ldflags
 
 # Build
-build $builddir/rt_nonfinite.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/rt_nonfinite.c
-build $builddir/runge_kutta_4_data.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/runge_kutta_4_data.c
-build $builddir/runge_kutta_4_initialize.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/runge_kutta_4_initialize.c
-build $builddir/runge_kutta_4_terminate.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/runge_kutta_4_terminate.c
-build $builddir/runge_kutta_4.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/runge_kutta_4.c
-build $builddir/nonlinear_differential_model.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/nonlinear_differential_model.c
-build $builddir/model_payload.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/model_payload.c
-build $builddir/inertia_100.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/inertia_100.c
-build $builddir/coriolis_100.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/coriolis_100.c
-build $builddir/inertia_125.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/inertia_125.c
-build $builddir/coriolis_125.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/coriolis_125.c
-build $builddir/inertia_150.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/inertia_150.c
-build $builddir/coriolis_150.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/coriolis_150.c
-build $builddir/inertia_175.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/inertia_175.c
-build $builddir/coriolis_175.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/coriolis_175.c
-build $builddir/inertia_200.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/inertia_200.c
-build $builddir/coriolis_200.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/coriolis_200.c
-build $builddir/eml_int_forloop_overflow_check.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/eml_int_forloop_overflow_check.c
-build $builddir/mpower.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/mpower.c
-build $builddir/warning.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/warning.c
-build $builddir/_coder_runge_kutta_4_api.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/interface/_coder_runge_kutta_4_api.c
-build $builddir/_coder_runge_kutta_4_mex.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/interface/_coder_runge_kutta_4_mex.c
-build $builddir/_coder_runge_kutta_4_info.o : cc C$:/Users/Jonas$ Weigand/OneDrive/MATLAB/21-02-28$ Sysident$ Online$ Full$ Robot$ MEX$ V7/functions/codegen/mex/runge_kutta_4/interface/_coder_runge_kutta_4_info.c
-build $builddir/c_mexapi_version.o : cc C$:/Program$ Files/MATLAB/R2020a/extern/version/c_mexapi_version.c
+build $builddir/runge_kutta_4_data.o : cc $root/runge_kutta_4_data.c
+build $builddir/rt_nonfinite.o : cc $root/rt_nonfinite.c
+build $builddir/runge_kutta_4_initialize.o : cc $root/runge_kutta_4_initialize.c
+build $builddir/runge_kutta_4_terminate.o : cc $root/runge_kutta_4_terminate.c
+build $builddir/runge_kutta_4.o : cc $root/runge_kutta_4.c
+build $builddir/robot_dynamics.o : cc $root/robot_dynamics.c
+build $builddir/inertia_100.o : cc $root/inertia_100.c
+build $builddir/coriolis_100.o : cc $root/coriolis_100.c
+build $builddir/inertia_125.o : cc $root/inertia_125.c
+build $builddir/coriolis_125.o : cc $root/coriolis_125.c
+build $builddir/inertia_150.o : cc $root/inertia_150.c
+build $builddir/coriolis_150.o : cc $root/coriolis_150.c
+build $builddir/inertia_175.o : cc $root/inertia_175.c
+build $builddir/coriolis_175.o : cc $root/coriolis_175.c
+build $builddir/inertia_200.o : cc $root/inertia_200.c
+build $builddir/coriolis_200.o : cc $root/coriolis_200.c
+build $builddir/mpower.o : cc $root/mpower.c
+build $builddir/eml_int_forloop_overflow_check.o : cc $root/eml_int_forloop_overflow_check.c
+build $builddir/warning.o : cc $root/warning.c
+build $builddir/_coder_runge_kutta_4_api.o : cc $root/interface/_coder_runge_kutta_4_api.c
+build $builddir/_coder_runge_kutta_4_mex.o : cc $root/interface/_coder_runge_kutta_4_mex.c
+build $builddir/nonlinear_differential_model.o : cc $root/nonlinear_differential_model.c
+build $builddir/_coder_runge_kutta_4_info.o : cc $root/interface/_coder_runge_kutta_4_info.c
+build $builddir/c_mexapi_version.o : cc $matlabdir/extern/version/c_mexapi_version.c
 
 # Link
-build $root\runge_kutta_4_mex.mexw64 : link $builddir\rt_nonfinite.o $builddir\runge_kutta_4_data.o $builddir\runge_kutta_4_initialize.o $builddir\runge_kutta_4_terminate.o $builddir\runge_kutta_4.o $builddir\nonlinear_differential_model.o $builddir\model_payload.o $builddir\inertia_100.o $builddir\coriolis_100.o $builddir\inertia_125.o $builddir\coriolis_125.o $builddir\inertia_150.o $builddir\coriolis_150.o $builddir\inertia_175.o $builddir\coriolis_175.o $builddir\inertia_200.o $builddir\coriolis_200.o $builddir\eml_int_forloop_overflow_check.o $builddir\mpower.o $builddir\warning.o $builddir\_coder_runge_kutta_4_api.o $builddir\_coder_runge_kutta_4_mex.o $builddir\_coder_runge_kutta_4_info.o $builddir\c_mexapi_version.o 
+build $root/runge_kutta_4_mex.mexa64 : link $builddir/runge_kutta_4_data.o $builddir/rt_nonfinite.o $builddir/runge_kutta_4_initialize.o $builddir/runge_kutta_4_terminate.o $builddir/runge_kutta_4.o $builddir/robot_dynamics.o $builddir/inertia_100.o $builddir/coriolis_100.o $builddir/inertia_125.o $builddir/coriolis_125.o $builddir/inertia_150.o $builddir/coriolis_150.o $builddir/inertia_175.o $builddir/coriolis_175.o $builddir/inertia_200.o $builddir/coriolis_200.o $builddir/mpower.o $builddir/eml_int_forloop_overflow_check.o $builddir/warning.o $builddir/_coder_runge_kutta_4_api.o $builddir/_coder_runge_kutta_4_mex.o $builddir/nonlinear_differential_model.o $builddir/_coder_runge_kutta_4_info.o $builddir/c_mexapi_version.o 

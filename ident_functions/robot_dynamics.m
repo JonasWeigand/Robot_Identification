@@ -62,6 +62,13 @@ G(2) = G(2) + tau_hyd;
                 M_calc = inertia_200( q_global );
                 C_calc = coriolis_200( q_global, qd' );
                 G_calc = gravload_200( q_global )';
+                
+            otherwise
+                % for code generation
+                M_calc = eye(6);
+                C_calc = eye(6);
+                G_calc = zeros(6, 1);
+                
         end
         M_inverse_calc = M_calc^-1;
         

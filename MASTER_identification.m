@@ -53,7 +53,7 @@ enable_disturbance_torque       = false;
 % compute simulator using MEX files
 % MEX files must be recompiled, if a different data intervall length is
 % applied
-enable_MEX                      = true;
+enable_MEX                      = false;
 
 % offset the cost function for the first x seconds
 % increases robustness to unknown initial states of the robot

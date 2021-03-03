@@ -13,7 +13,6 @@
 #include "runge_kutta_4_initialize.h"
 #include "_coder_runge_kutta_4_mex.h"
 #include "rt_nonfinite.h"
-#include "runge_kutta_4.h"
 #include "runge_kutta_4_data.h"
 
 /* Function Definitions */

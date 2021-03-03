@@ -11,22 +11,22 @@
 
 /* Include files */
 #include "nonlinear_differential_model.h"
-#include "model_payload.h"
-#include "mwmathutil.h"
+#include "robot_dynamics.h"
 #include "rt_nonfinite.h"
-#include "runge_kutta_4.h"
+#include "runge_kutta_4_types.h"
+#include "mwmathutil.h"
 #include <string.h>
 
 /* Variable Definitions */
-static emlrtRSInfo g_emlrtRSI = { 102, /* lineNo */
+static emlrtRSInfo g_emlrtRSI = { 77,  /* lineNo */
   "nonlinear_differential_model",      /* fcnName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m"/* pathName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m"/* pathName */
 };
 
 static emlrtDCInfo b_emlrtDCI = { 24,  /* lineNo */
   17,                                  /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
 };
 
@@ -36,14 +36,14 @@ static emlrtBCInfo emlrtBCI = { 1,     /* iFirst */
   17,                                  /* colNo */
   "x",                                 /* aName */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   0                                    /* checkKind */
 };
 
 static emlrtDCInfo c_emlrtDCI = { 25,  /* lineNo */
   15,                                  /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
 };
 
@@ -53,24 +53,24 @@ static emlrtBCInfo b_emlrtBCI = { 1,   /* iFirst */
   15,                                  /* colNo */
   "x",                                 /* aName */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   0                                    /* checkKind */
 };
 
-static emlrtDCInfo d_emlrtDCI = { 62,  /* lineNo */
+static emlrtDCInfo d_emlrtDCI = { 38,  /* lineNo */
   28,                                  /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
 };
 
 static emlrtBCInfo c_emlrtBCI = { 1,   /* iFirst */
   31,                                  /* iLast */
-  62,                                  /* lineNo */
+  38,                                  /* lineNo */
   28,                                  /* colNo */
   "scaledOptVec",                      /* aName */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   0                                    /* checkKind */
 };
 
@@ -78,146 +78,146 @@ static emlrtECInfo emlrtECI = { -1,    /* nDims */
   24,                                  /* lineNo */
   1,                                   /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m"/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m"/* pName */
 };
 
 static emlrtECInfo b_emlrtECI = { -1,  /* nDims */
   25,                                  /* lineNo */
   1,                                   /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m"/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m"/* pName */
 };
 
-static emlrtDCInfo e_emlrtDCI = { 132, /* lineNo */
+static emlrtDCInfo e_emlrtDCI = { 100, /* lineNo */
   9,                                   /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
 };
 
 static emlrtBCInfo d_emlrtBCI = { 1,   /* iFirst */
   12,                                  /* iLast */
-  132,                                 /* lineNo */
+  100,                                 /* lineNo */
   9,                                   /* colNo */
   "x_dot",                             /* aName */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   0                                    /* checkKind */
 };
 
 static emlrtECInfo c_emlrtECI = { -1,  /* nDims */
-  132,                                 /* lineNo */
+  100,                                 /* lineNo */
   1,                                   /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m"/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m"/* pName */
 };
 
-static emlrtDCInfo f_emlrtDCI = { 134, /* lineNo */
+static emlrtDCInfo f_emlrtDCI = { 102, /* lineNo */
   7,                                   /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
 };
 
 static emlrtBCInfo e_emlrtBCI = { 1,   /* iFirst */
   12,                                  /* iLast */
-  134,                                 /* lineNo */
+  102,                                 /* lineNo */
   7,                                   /* colNo */
   "x_dot",                             /* aName */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   0                                    /* checkKind */
 };
 
 static emlrtECInfo d_emlrtECI = { -1,  /* nDims */
-  134,                                 /* lineNo */
+  102,                                 /* lineNo */
   1,                                   /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m"/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m"/* pName */
 };
 
-static emlrtDCInfo g_emlrtDCI = { 57,  /* lineNo */
+static emlrtDCInfo g_emlrtDCI = { 33,  /* lineNo */
   28,                                  /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
 };
 
 static emlrtBCInfo f_emlrtBCI = { 1,   /* iFirst */
   31,                                  /* iLast */
-  57,                                  /* lineNo */
+  33,                                  /* lineNo */
   28,                                  /* colNo */
   "scaledOptVec",                      /* aName */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   0                                    /* checkKind */
 };
 
-static emlrtDCInfo h_emlrtDCI = { 58,  /* lineNo */
+static emlrtDCInfo h_emlrtDCI = { 34,  /* lineNo */
   28,                                  /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
 };
 
 static emlrtBCInfo g_emlrtBCI = { 1,   /* iFirst */
   31,                                  /* iLast */
-  58,                                  /* lineNo */
+  34,                                  /* lineNo */
   28,                                  /* colNo */
   "scaledOptVec",                      /* aName */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   0                                    /* checkKind */
 };
 
-static emlrtDCInfo i_emlrtDCI = { 59,  /* lineNo */
+static emlrtDCInfo i_emlrtDCI = { 35,  /* lineNo */
   28,                                  /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
 };
 
 static emlrtBCInfo h_emlrtBCI = { 1,   /* iFirst */
   31,                                  /* iLast */
-  59,                                  /* lineNo */
+  35,                                  /* lineNo */
   28,                                  /* colNo */
   "scaledOptVec",                      /* aName */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   0                                    /* checkKind */
 };
 
-static emlrtDCInfo j_emlrtDCI = { 60,  /* lineNo */
+static emlrtDCInfo j_emlrtDCI = { 36,  /* lineNo */
   28,                                  /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
 };
 
 static emlrtBCInfo i_emlrtBCI = { 1,   /* iFirst */
   31,                                  /* iLast */
-  60,                                  /* lineNo */
+  36,                                  /* lineNo */
   28,                                  /* colNo */
   "scaledOptVec",                      /* aName */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   0                                    /* checkKind */
 };
 
-static emlrtDCInfo k_emlrtDCI = { 61,  /* lineNo */
+static emlrtDCInfo k_emlrtDCI = { 37,  /* lineNo */
   28,                                  /* colNo */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
 };
 
 static emlrtBCInfo j_emlrtBCI = { 1,   /* iFirst */
   31,                                  /* iLast */
-  61,                                  /* lineNo */
+  37,                                  /* lineNo */
   28,                                  /* colNo */
   "scaledOptVec",                      /* aName */
   "nonlinear_differential_model",      /* fName */
-  "C:\\Users\\Jonas Weigand\\OneDrive\\MATLAB\\21-02-28 Sysident Online Full Robot MEX V7\\functions\\nonlinear_differential_model.m",/* pName */
+  "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   0                                    /* checkKind */
 };
 
@@ -226,23 +226,22 @@ void b_nonlinear_differential_model(const emlrtStack *sp, real_T t_disc, const
   real_T x[12], const real_T scaledOptVec[31], const struct0_T *b_static,
   struct1_T *dyn, real_T x_dot[12], real_T tau_m[6])
 {
-  int32_T loop_ub;
-  int32_T i;
-  int32_T i1;
-  int32_T b_loop_ub;
-  real_T x_data[12];
-  real_T qd[6];
-  int32_T k;
-  boolean_T guard1 = false;
-  real_T y;
-  real_T scale;
-  real_T absxk;
-  real_T t;
-  real_T f_sign[6];
-  real_T b_x[6];
-  real_T b_x_data[12];
-  real_T b_scaledOptVec[6];
   emlrtStack st;
+  real_T b_x_data[12];
+  real_T x_data[12];
+  real_T b_scaledOptVec[6];
+  real_T b_x[6];
+  real_T f_sign[6];
+  real_T qd[6];
+  real_T absxk;
+  real_T scale;
+  real_T t;
+  real_T y;
+  int32_T b_loop_ub;
+  int32_T i;
+  int32_T k;
+  int32_T loop_ub;
+  boolean_T guard1 = false;
   st.prev = sp;
   st.tls = sp->tls;
   memcpy(&x_dot[0], &b_static->x_init[0], 12U * sizeof(real_T));
@@ -265,121 +264,107 @@ void b_nonlinear_differential_model(const emlrtStack *sp, real_T t_disc, const
       emlrtIntegerCheckR2012b(b_static->n_axis, &b_emlrtDCI, sp);
     }
 
-    loop_ub = (int32_T)b_static->n_axis;
-    if ((loop_ub < 1) || (loop_ub > 12)) {
-      emlrtDynamicBoundsCheckR2012b(loop_ub, 1, 12, &emlrtBCI, sp);
+    if (((int32_T)b_static->n_axis < 1) || ((int32_T)b_static->n_axis > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)b_static->n_axis, 1, 12, &emlrtBCI,
+        sp);
     }
+
+    loop_ub = (int32_T)b_static->n_axis;
   }
 
-  if (6 != loop_ub) {
-    emlrtSubAssignSizeCheck1dR2017a(6, loop_ub, &emlrtECI, sp);
+  if (6 != (int8_T)loop_ub) {
+    emlrtSubAssignSizeCheck1dR2017a(6, (int8_T)loop_ub, &emlrtECI, sp);
   }
 
   /*  angle */
   if (b_static->n_axis + 1.0 > 12.0) {
     i = 0;
-    i1 = -1;
+    k = -1;
   } else {
     if (b_static->n_axis + 1.0 != (int32_T)muDoubleScalarFloor(b_static->n_axis
          + 1.0)) {
       emlrtIntegerCheckR2012b(b_static->n_axis + 1.0, &c_emlrtDCI, sp);
     }
 
-    i = (int32_T)(b_static->n_axis + 1.0);
-    if ((i < 1) || (i > 12)) {
-      emlrtDynamicBoundsCheckR2012b(i, 1, 12, &b_emlrtBCI, sp);
+    if (((int32_T)(b_static->n_axis + 1.0) < 1) || ((int32_T)(b_static->n_axis +
+          1.0) > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)(b_static->n_axis + 1.0), 1, 12,
+        &b_emlrtBCI, sp);
     }
 
-    i--;
-    i1 = 11;
+    i = (int32_T)(b_static->n_axis + 1.0) - 1;
+    k = 11;
   }
 
-  b_loop_ub = i1 - i;
-  i1 = b_loop_ub + 1;
-  if (6 != i1) {
-    emlrtSubAssignSizeCheck1dR2017a(6, i1, &b_emlrtECI, sp);
+  b_loop_ub = k - i;
+  if (6 != (int8_T)(b_loop_ub + 1)) {
+    emlrtSubAssignSizeCheck1dR2017a(6, (int8_T)(b_loop_ub + 1), &b_emlrtECI, sp);
   }
 
-  for (i1 = 0; i1 <= b_loop_ub; i1++) {
-    x_data[i1] = x[i + i1];
+  for (k = 0; k <= b_loop_ub; k++) {
+    x_data[k] = x[i + k];
   }
 
-  for (i1 = 0; i1 < 6; i1++) {
-    qd[i1] = x_data[i1];
+  for (k = 0; k < 6; k++) {
+    qd[k] = x_data[k];
   }
 
   /*  velocity */
-  /*  size(x_dot) */
-  /*  size(q_r) */
-  /*  size(q_r_d1) */
-  /*  size(tau_dist) */
-  /*  size(tau_ff) */
-  /*  size(q) */
-  /*  size(qd) */
-  /*  disable feed forward */
-  /*  tau_ff = 0; */
-  /*  phi_r_m = u * phi_r; */
-  /*  phi_r_m_d1 = u * phi_r_d1; */
   /*  override with values for optimisation */
   /*  use the nominal model for the feed forward terms */
   /*  friction */
-  for (i1 = 0; i1 < 6; i1++) {
-    if (b_static->f_vis_idx[i1] != (int32_T)muDoubleScalarFloor
-        (b_static->f_vis_idx[i1])) {
-      emlrtIntegerCheckR2012b(b_static->f_vis_idx[i1], &g_emlrtDCI, sp);
+  for (k = 0; k < 6; k++) {
+    y = b_static->f_vis_idx[k];
+    if (y != (int32_T)muDoubleScalarFloor(y)) {
+      emlrtIntegerCheckR2012b(y, &g_emlrtDCI, sp);
     }
 
-    k = (int32_T)b_static->f_vis_idx[i1];
-    if ((k < 1) || (k > 31)) {
-      emlrtDynamicBoundsCheckR2012b(k, 1, 31, &f_emlrtBCI, sp);
-    }
-  }
-
-  for (i1 = 0; i1 < 6; i1++) {
-    if (b_static->f_coul_idx[i1] != (int32_T)muDoubleScalarFloor
-        (b_static->f_coul_idx[i1])) {
-      emlrtIntegerCheckR2012b(b_static->f_coul_idx[i1], &h_emlrtDCI, sp);
-    }
-
-    k = (int32_T)b_static->f_coul_idx[i1];
-    if ((k < 1) || (k > 31)) {
-      emlrtDynamicBoundsCheckR2012b(k, 1, 31, &g_emlrtBCI, sp);
+    if (((int32_T)y < 1) || ((int32_T)y > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)y, 1, 31, &f_emlrtBCI, sp);
     }
   }
 
-  for (i1 = 0; i1 < 6; i1++) {
-    if (b_static->f_a_idx[i1] != (int32_T)muDoubleScalarFloor(b_static->
-         f_a_idx[i1])) {
-      emlrtIntegerCheckR2012b(b_static->f_a_idx[i1], &i_emlrtDCI, sp);
+  for (k = 0; k < 6; k++) {
+    y = b_static->f_coul_idx[k];
+    if (y != (int32_T)muDoubleScalarFloor(y)) {
+      emlrtIntegerCheckR2012b(y, &h_emlrtDCI, sp);
     }
 
-    k = (int32_T)b_static->f_a_idx[i1];
-    if ((k < 1) || (k > 31)) {
-      emlrtDynamicBoundsCheckR2012b(k, 1, 31, &h_emlrtBCI, sp);
-    }
-  }
-
-  for (i1 = 0; i1 < 6; i1++) {
-    if (b_static->f_b_idx[i1] != (int32_T)muDoubleScalarFloor(b_static->
-         f_b_idx[i1])) {
-      emlrtIntegerCheckR2012b(b_static->f_b_idx[i1], &j_emlrtDCI, sp);
-    }
-
-    k = (int32_T)b_static->f_b_idx[i1];
-    if ((k < 1) || (k > 31)) {
-      emlrtDynamicBoundsCheckR2012b(k, 1, 31, &i_emlrtBCI, sp);
+    if (((int32_T)y < 1) || ((int32_T)y > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)y, 1, 31, &g_emlrtBCI, sp);
     }
   }
 
-  for (i1 = 0; i1 < 6; i1++) {
-    if (b_static->f_asym_idx[i1] != (int32_T)muDoubleScalarFloor
-        (b_static->f_asym_idx[i1])) {
-      emlrtIntegerCheckR2012b(b_static->f_asym_idx[i1], &k_emlrtDCI, sp);
+  for (k = 0; k < 6; k++) {
+    y = b_static->f_a_idx[k];
+    if (y != (int32_T)muDoubleScalarFloor(y)) {
+      emlrtIntegerCheckR2012b(y, &i_emlrtDCI, sp);
     }
 
-    k = (int32_T)b_static->f_asym_idx[i1];
-    if ((k < 1) || (k > 31)) {
-      emlrtDynamicBoundsCheckR2012b(k, 1, 31, &j_emlrtBCI, sp);
+    if (((int32_T)y < 1) || ((int32_T)y > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)y, 1, 31, &h_emlrtBCI, sp);
+    }
+  }
+
+  for (k = 0; k < 6; k++) {
+    y = b_static->f_b_idx[k];
+    if (y != (int32_T)muDoubleScalarFloor(y)) {
+      emlrtIntegerCheckR2012b(y, &j_emlrtDCI, sp);
+    }
+
+    if (((int32_T)y < 1) || ((int32_T)y > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)y, 1, 31, &i_emlrtBCI, sp);
+    }
+  }
+
+  for (k = 0; k < 6; k++) {
+    y = b_static->f_asym_idx[k];
+    if (y != (int32_T)muDoubleScalarFloor(y)) {
+      emlrtIntegerCheckR2012b(y, &k_emlrtDCI, sp);
+    }
+
+    if (((int32_T)y < 1) || ((int32_T)y > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)y, 1, 31, &j_emlrtBCI, sp);
     }
   }
 
@@ -388,9 +373,10 @@ void b_nonlinear_differential_model(const emlrtStack *sp, real_T t_disc, const
     emlrtIntegerCheckR2012b(b_static->m_pay_idx, &d_emlrtDCI, sp);
   }
 
-  i1 = (int32_T)b_static->m_pay_idx;
-  if ((i1 < 1) || (i1 > 31)) {
-    emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &c_emlrtBCI, sp);
+  if (((int32_T)b_static->m_pay_idx < 1) || ((int32_T)b_static->m_pay_idx > 31))
+  {
+    emlrtDynamicBoundsCheckR2012b((int32_T)b_static->m_pay_idx, 1, 31,
+      &c_emlrtBCI, sp);
   }
 
   /*  calculate gravity, coriolis, inertia */
@@ -420,8 +406,8 @@ void b_nonlinear_differential_model(const emlrtStack *sp, real_T t_disc, const
     if (y > b_static->q_update_threshold) {
       guard1 = true;
     } else {
-      for (i1 = 0; i1 <= b_loop_ub; i1++) {
-        x_data[i1] = x[i + i1];
+      for (k = 0; k <= b_loop_ub; k++) {
+        x_data[k] = x[i + k];
       }
 
       y = 0.0;
@@ -455,16 +441,16 @@ void b_nonlinear_differential_model(const emlrtStack *sp, real_T t_disc, const
       memcpy(&x_data[0], &x[0], loop_ub * sizeof(real_T));
     }
 
-    for (i1 = 0; i1 < 6; i1++) {
-      dyn->q_update[i1] = x_data[i1];
+    for (k = 0; k < 6; k++) {
+      dyn->q_update[k] = x_data[k];
     }
 
-    for (i1 = 0; i1 <= b_loop_ub; i1++) {
-      x_data[i1] = x[i + i1];
+    for (k = 0; k <= b_loop_ub; k++) {
+      x_data[k] = x[i + k];
     }
 
-    for (i1 = 0; i1 < 6; i1++) {
-      dyn->qd_update[i1] = x_data[i1];
+    for (k = 0; k < 6; k++) {
+      dyn->qd_update[k] = x_data[k];
     }
 
     /*          % transfer from relative to global coordiantes */
@@ -490,35 +476,28 @@ void b_nonlinear_differential_model(const emlrtStack *sp, real_T t_disc, const
       memcpy(&x_data[0], &x[0], loop_ub * sizeof(real_T));
     }
 
-    for (i1 = 0; i1 <= b_loop_ub; i1++) {
-      b_x_data[i1] = x[i + i1];
+    for (k = 0; k <= b_loop_ub; k++) {
+      b_x_data[k] = x[i + k];
     }
 
     st.site = &g_emlrtRSI;
-    model_payload(&st, *(real_T (*)[6])&x_data[0], *(real_T (*)[6])&b_x_data[0],
-                  scaledOptVec[(int32_T)b_static->m_pay_idx - 1], dyn->M_inverse,
-                  dyn->C, dyn->G);
+    robot_dynamics(&st, *(real_T (*)[6])&x_data[0], *(real_T (*)[6])&b_x_data[0],
+                   scaledOptVec[(int32_T)b_static->m_pay_idx - 1],
+                   dyn->M_inverse, dyn->C, dyn->G);
   }
 
   /*  friction torque */
   /*  continous differentiable sign of the link velocity */
-  for (i1 = 0; i1 <= b_loop_ub; i1++) {
-    x_data[i1] = x[i + i1];
+  for (k = 0; k <= b_loop_ub; k++) {
+    x_data[k] = x[i + k];
   }
 
   for (k = 0; k < 6; k++) {
     f_sign[k] = muDoubleScalarTanh(b_static->s_f_ode[k] * x_data[k]);
   }
 
-  /*  friction model 2 */
-  /*  Ding, */
-  /*  Nonlinear Friction and Dynamical Identification for a Robot */
-  /*  Manipulator with Improved Cuckoo Search Algorithm */
-  /*  OR */
-  /*  Grotjahn */
-  /*  Friction and rigid body identification of robot dynamics */
-  for (i1 = 0; i1 <= b_loop_ub; i1++) {
-    x_data[i1] = x[i + i1];
+  for (k = 0; k <= b_loop_ub; k++) {
+    x_data[k] = x[i + k];
   }
 
   for (k = 0; k < 6; k++) {
@@ -527,19 +506,19 @@ void b_nonlinear_differential_model(const emlrtStack *sp, real_T t_disc, const
   }
 
   /*  motor control torque */
-  for (i1 = 0; i1 <= b_loop_ub; i1++) {
-    x_data[i1] = x[i + i1];
+  for (k = 0; k <= b_loop_ub; k++) {
+    x_data[k] = x[i + k];
   }
 
   if (0 <= loop_ub - 1) {
     memcpy(&b_x_data[0], &x[0], loop_ub * sizeof(real_T));
   }
 
-  for (i1 = 0; i1 < 6; i1++) {
-    loop_ub = i1 + 6 * ((int32_T)t_disc - 1);
-    tau_m[i1] = (b_static->tau_ff[loop_ub] + b_static->K_vel_eff[i1] *
-                 (b_static->phi_r_d1[loop_ub] - x_data[i1])) +
-      b_static->K_pos_eff[i1] * (b_static->phi_r[loop_ub] - b_x_data[i1]);
+  for (k = 0; k < 6; k++) {
+    loop_ub = k + 6 * ((int32_T)t_disc - 1);
+    tau_m[k] = (b_static->tau_ff[loop_ub] + b_static->K_vel_eff[k] *
+                (b_static->phi_r_d1[loop_ub] - x_data[k])) + b_static->
+      K_pos_eff[k] * (b_static->phi_r[loop_ub] - b_x_data[k]);
   }
 
   /*  derivatives */
@@ -550,68 +529,71 @@ void b_nonlinear_differential_model(const emlrtStack *sp, real_T t_disc, const
       emlrtIntegerCheckR2012b(b_static->n_axis, &e_emlrtDCI, sp);
     }
 
-    loop_ub = (int32_T)b_static->n_axis;
-    if ((loop_ub < 1) || (loop_ub > 12)) {
-      emlrtDynamicBoundsCheckR2012b(loop_ub, 1, 12, &d_emlrtBCI, sp);
+    if (((int32_T)b_static->n_axis < 1) || ((int32_T)b_static->n_axis > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)b_static->n_axis, 1, 12,
+        &d_emlrtBCI, sp);
     }
+
+    loop_ub = (int32_T)b_static->n_axis;
   }
 
   if (loop_ub != 6) {
     emlrtSubAssignSizeCheck1dR2017a(loop_ub, 6, &c_emlrtECI, sp);
   }
 
-  for (i1 = 0; i1 < 6; i1++) {
-    x_dot[i1] = x[i + i1];
+  for (k = 0; k < 6; k++) {
+    x_dot[k] = x[i + k];
   }
 
   if (b_static->n_axis + 1.0 > 12.0) {
     i = -1;
-    i1 = -1;
+    k = -1;
   } else {
     if (b_static->n_axis + 1.0 != (int32_T)muDoubleScalarFloor(b_static->n_axis
          + 1.0)) {
       emlrtIntegerCheckR2012b(b_static->n_axis + 1.0, &f_emlrtDCI, sp);
     }
 
-    i = (int32_T)(b_static->n_axis + 1.0);
-    if ((i < 1) || (i > 12)) {
-      emlrtDynamicBoundsCheckR2012b(i, 1, 12, &e_emlrtBCI, sp);
+    if (((int32_T)(b_static->n_axis + 1.0) < 1) || ((int32_T)(b_static->n_axis +
+          1.0) > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)(b_static->n_axis + 1.0), 1, 12,
+        &e_emlrtBCI, sp);
     }
 
-    i -= 2;
-    i1 = 11;
+    i = (int32_T)(b_static->n_axis + 1.0) - 2;
+    k = 11;
   }
 
-  i1 -= i;
-  if (i1 != 6) {
-    emlrtSubAssignSizeCheck1dR2017a(i1, 6, &d_emlrtECI, sp);
+  k -= i;
+  if (k != 6) {
+    emlrtSubAssignSizeCheck1dR2017a(k, 6, &d_emlrtECI, sp);
   }
 
-  for (i1 = 0; i1 < 6; i1++) {
+  for (k = 0; k < 6; k++) {
     y = 0.0;
-    for (k = 0; k < 6; k++) {
-      y += dyn->C[i1 + 6 * k] * qd[k];
+    for (loop_ub = 0; loop_ub < 6; loop_ub++) {
+      y += dyn->C[k + 6 * loop_ub] * qd[loop_ub];
     }
 
-    b_scaledOptVec[i1] = (((-(((scaledOptVec[(int32_T)b_static->f_asym_idx[i1] -
-      1] + scaledOptVec[(int32_T)b_static->f_vis_idx[i1] - 1] * qd[i1]) +
-      scaledOptVec[(int32_T)b_static->f_coul_idx[i1] - 1] * f_sign[i1]) +
-      scaledOptVec[(int32_T)b_static->f_a_idx[i1] - 1] * b_x[i1]) - dyn->G[i1])
-      - y) + tau_m[i1] * b_static->u[i1]) + b_static->tau_dist[i1 + 6 *
-      ((int32_T)t_disc - 1)];
+    b_scaledOptVec[k] = (((-(((scaledOptVec[(int32_T)b_static->f_asym_idx[k] - 1]
+      + scaledOptVec[(int32_T)b_static->f_vis_idx[k] - 1] * qd[k]) +
+      scaledOptVec[(int32_T)b_static->f_coul_idx[k] - 1] * f_sign[k]) +
+      scaledOptVec[(int32_T)b_static->f_a_idx[k] - 1] * b_x[k]) - dyn->G[k]) - y)
+                         + tau_m[k] * b_static->u[k]) + b_static->tau_dist[k + 6
+      * ((int32_T)t_disc - 1)];
   }
 
-  for (i1 = 0; i1 < 6; i1++) {
+  for (k = 0; k < 6; k++) {
     y = 0.0;
-    for (k = 0; k < 6; k++) {
-      y += dyn->M_inverse[i1 + 6 * k] * b_scaledOptVec[k];
+    for (loop_ub = 0; loop_ub < 6; loop_ub++) {
+      y += dyn->M_inverse[k + 6 * loop_ub] * b_scaledOptVec[loop_ub];
     }
 
-    qd[i1] = y;
+    qd[k] = y;
   }
 
-  for (i1 = 0; i1 < 6; i1++) {
-    x_dot[(i + i1) + 1] = qd[i1];
+  for (k = 0; k < 6; k++) {
+    x_dot[(i + k) + 1] = qd[k];
   }
 }
 
@@ -619,23 +601,22 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
   const real_T scaledOptVec[31], const struct0_T *b_static, struct1_T *dyn,
   real_T x_dot[12], real_T tau_m[6])
 {
-  int32_T loop_ub;
+  emlrtStack st;
+  real_T b_x_data[12];
+  real_T x_data[12];
+  real_T b_scaledOptVec[6];
+  real_T b_x[6];
+  real_T f_sign[6];
+  real_T qd[6];
+  real_T absxk;
+  real_T scale;
+  real_T t;
+  real_T y;
+  int32_T b_loop_ub;
   int32_T i;
   int32_T k;
-  int32_T b_loop_ub;
-  real_T x_data[12];
-  real_T qd[6];
-  int32_T i1;
-  real_T y;
-  real_T scale;
-  real_T absxk;
+  int32_T loop_ub;
   boolean_T guard1 = false;
-  real_T t;
-  real_T f_sign[6];
-  real_T b_x[6];
-  real_T b_x_data[12];
-  real_T b_scaledOptVec[6];
-  emlrtStack st;
   st.prev = sp;
   st.tls = sp->tls;
   memcpy(&x_dot[0], &b_static->x_init[0], 12U * sizeof(real_T));
@@ -658,14 +639,16 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
       emlrtIntegerCheckR2012b(b_static->n_axis, &b_emlrtDCI, sp);
     }
 
-    loop_ub = (int32_T)b_static->n_axis;
-    if ((loop_ub < 1) || (loop_ub > 12)) {
-      emlrtDynamicBoundsCheckR2012b(loop_ub, 1, 12, &emlrtBCI, sp);
+    if (((int32_T)b_static->n_axis < 1) || ((int32_T)b_static->n_axis > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)b_static->n_axis, 1, 12, &emlrtBCI,
+        sp);
     }
+
+    loop_ub = (int32_T)b_static->n_axis;
   }
 
-  if (6 != loop_ub) {
-    emlrtSubAssignSizeCheck1dR2017a(6, loop_ub, &emlrtECI, sp);
+  if (6 != (int8_T)loop_ub) {
+    emlrtSubAssignSizeCheck1dR2017a(6, (int8_T)loop_ub, &emlrtECI, sp);
   }
 
   /*  angle */
@@ -678,19 +661,19 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
       emlrtIntegerCheckR2012b(b_static->n_axis + 1.0, &c_emlrtDCI, sp);
     }
 
-    i = (int32_T)(b_static->n_axis + 1.0);
-    if ((i < 1) || (i > 12)) {
-      emlrtDynamicBoundsCheckR2012b(i, 1, 12, &b_emlrtBCI, sp);
+    if (((int32_T)(b_static->n_axis + 1.0) < 1) || ((int32_T)(b_static->n_axis +
+          1.0) > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)(b_static->n_axis + 1.0), 1, 12,
+        &b_emlrtBCI, sp);
     }
 
-    i--;
+    i = (int32_T)(b_static->n_axis + 1.0) - 1;
     k = 11;
   }
 
   b_loop_ub = k - i;
-  k = b_loop_ub + 1;
-  if (6 != k) {
-    emlrtSubAssignSizeCheck1dR2017a(6, k, &b_emlrtECI, sp);
+  if (6 != (int8_T)(b_loop_ub + 1)) {
+    emlrtSubAssignSizeCheck1dR2017a(6, (int8_T)(b_loop_ub + 1), &b_emlrtECI, sp);
   }
 
   for (k = 0; k <= b_loop_ub; k++) {
@@ -702,77 +685,61 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
   }
 
   /*  velocity */
-  /*  size(x_dot) */
-  /*  size(q_r) */
-  /*  size(q_r_d1) */
-  /*  size(tau_dist) */
-  /*  size(tau_ff) */
-  /*  size(q) */
-  /*  size(qd) */
-  /*  disable feed forward */
-  /*  tau_ff = 0; */
-  /*  phi_r_m = u * phi_r; */
-  /*  phi_r_m_d1 = u * phi_r_d1; */
   /*  override with values for optimisation */
   /*  use the nominal model for the feed forward terms */
   /*  friction */
   for (k = 0; k < 6; k++) {
-    if (b_static->f_vis_idx[k] != (int32_T)muDoubleScalarFloor
-        (b_static->f_vis_idx[k])) {
-      emlrtIntegerCheckR2012b(b_static->f_vis_idx[k], &g_emlrtDCI, sp);
+    y = b_static->f_vis_idx[k];
+    if (y != (int32_T)muDoubleScalarFloor(y)) {
+      emlrtIntegerCheckR2012b(y, &g_emlrtDCI, sp);
     }
 
-    i1 = (int32_T)b_static->f_vis_idx[k];
-    if ((i1 < 1) || (i1 > 31)) {
-      emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &f_emlrtBCI, sp);
-    }
-  }
-
-  for (k = 0; k < 6; k++) {
-    if (b_static->f_coul_idx[k] != (int32_T)muDoubleScalarFloor
-        (b_static->f_coul_idx[k])) {
-      emlrtIntegerCheckR2012b(b_static->f_coul_idx[k], &h_emlrtDCI, sp);
-    }
-
-    i1 = (int32_T)b_static->f_coul_idx[k];
-    if ((i1 < 1) || (i1 > 31)) {
-      emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &g_emlrtBCI, sp);
+    if (((int32_T)y < 1) || ((int32_T)y > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)y, 1, 31, &f_emlrtBCI, sp);
     }
   }
 
   for (k = 0; k < 6; k++) {
-    if (b_static->f_a_idx[k] != (int32_T)muDoubleScalarFloor(b_static->f_a_idx[k]))
-    {
-      emlrtIntegerCheckR2012b(b_static->f_a_idx[k], &i_emlrtDCI, sp);
+    y = b_static->f_coul_idx[k];
+    if (y != (int32_T)muDoubleScalarFloor(y)) {
+      emlrtIntegerCheckR2012b(y, &h_emlrtDCI, sp);
     }
 
-    i1 = (int32_T)b_static->f_a_idx[k];
-    if ((i1 < 1) || (i1 > 31)) {
-      emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &h_emlrtBCI, sp);
-    }
-  }
-
-  for (k = 0; k < 6; k++) {
-    if (b_static->f_b_idx[k] != (int32_T)muDoubleScalarFloor(b_static->f_b_idx[k]))
-    {
-      emlrtIntegerCheckR2012b(b_static->f_b_idx[k], &j_emlrtDCI, sp);
-    }
-
-    i1 = (int32_T)b_static->f_b_idx[k];
-    if ((i1 < 1) || (i1 > 31)) {
-      emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &i_emlrtBCI, sp);
+    if (((int32_T)y < 1) || ((int32_T)y > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)y, 1, 31, &g_emlrtBCI, sp);
     }
   }
 
   for (k = 0; k < 6; k++) {
-    if (b_static->f_asym_idx[k] != (int32_T)muDoubleScalarFloor
-        (b_static->f_asym_idx[k])) {
-      emlrtIntegerCheckR2012b(b_static->f_asym_idx[k], &k_emlrtDCI, sp);
+    y = b_static->f_a_idx[k];
+    if (y != (int32_T)muDoubleScalarFloor(y)) {
+      emlrtIntegerCheckR2012b(y, &i_emlrtDCI, sp);
     }
 
-    i1 = (int32_T)b_static->f_asym_idx[k];
-    if ((i1 < 1) || (i1 > 31)) {
-      emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &j_emlrtBCI, sp);
+    if (((int32_T)y < 1) || ((int32_T)y > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)y, 1, 31, &h_emlrtBCI, sp);
+    }
+  }
+
+  for (k = 0; k < 6; k++) {
+    y = b_static->f_b_idx[k];
+    if (y != (int32_T)muDoubleScalarFloor(y)) {
+      emlrtIntegerCheckR2012b(y, &j_emlrtDCI, sp);
+    }
+
+    if (((int32_T)y < 1) || ((int32_T)y > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)y, 1, 31, &i_emlrtBCI, sp);
+    }
+  }
+
+  for (k = 0; k < 6; k++) {
+    y = b_static->f_asym_idx[k];
+    if (y != (int32_T)muDoubleScalarFloor(y)) {
+      emlrtIntegerCheckR2012b(y, &k_emlrtDCI, sp);
+    }
+
+    if (((int32_T)y < 1) || ((int32_T)y > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)y, 1, 31, &j_emlrtBCI, sp);
     }
   }
 
@@ -781,9 +748,10 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
     emlrtIntegerCheckR2012b(b_static->m_pay_idx, &d_emlrtDCI, sp);
   }
 
-  k = (int32_T)b_static->m_pay_idx;
-  if ((k < 1) || (k > 31)) {
-    emlrtDynamicBoundsCheckR2012b(k, 1, 31, &c_emlrtBCI, sp);
+  if (((int32_T)b_static->m_pay_idx < 1) || ((int32_T)b_static->m_pay_idx > 31))
+  {
+    emlrtDynamicBoundsCheckR2012b((int32_T)b_static->m_pay_idx, 1, 31,
+      &c_emlrtBCI, sp);
   }
 
   /*  calculate gravity, coriolis, inertia */
@@ -884,9 +852,9 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
     }
 
     st.site = &g_emlrtRSI;
-    model_payload(&st, *(real_T (*)[6])&x_data[0], *(real_T (*)[6])&b_x_data[0],
-                  scaledOptVec[(int32_T)b_static->m_pay_idx - 1], dyn->M_inverse,
-                  dyn->C, dyn->G);
+    robot_dynamics(&st, *(real_T (*)[6])&x_data[0], *(real_T (*)[6])&b_x_data[0],
+                   scaledOptVec[(int32_T)b_static->m_pay_idx - 1],
+                   dyn->M_inverse, dyn->C, dyn->G);
   }
 
   /*  friction torque */
@@ -899,13 +867,6 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
     f_sign[k] = muDoubleScalarTanh(b_static->s_f_ode[k] * x_data[k]);
   }
 
-  /*  friction model 2 */
-  /*  Ding, */
-  /*  Nonlinear Friction and Dynamical Identification for a Robot */
-  /*  Manipulator with Improved Cuckoo Search Algorithm */
-  /*  OR */
-  /*  Grotjahn */
-  /*  Friction and rigid body identification of robot dynamics */
   for (k = 0; k <= b_loop_ub; k++) {
     x_data[k] = x[i + k];
   }
@@ -938,10 +899,12 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
       emlrtIntegerCheckR2012b(b_static->n_axis, &e_emlrtDCI, sp);
     }
 
-    loop_ub = (int32_T)b_static->n_axis;
-    if ((loop_ub < 1) || (loop_ub > 12)) {
-      emlrtDynamicBoundsCheckR2012b(loop_ub, 1, 12, &d_emlrtBCI, sp);
+    if (((int32_T)b_static->n_axis < 1) || ((int32_T)b_static->n_axis > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)b_static->n_axis, 1, 12,
+        &d_emlrtBCI, sp);
     }
+
+    loop_ub = (int32_T)b_static->n_axis;
   }
 
   if (loop_ub != 6) {
@@ -961,12 +924,13 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
       emlrtIntegerCheckR2012b(b_static->n_axis + 1.0, &f_emlrtDCI, sp);
     }
 
-    i = (int32_T)(b_static->n_axis + 1.0);
-    if ((i < 1) || (i > 12)) {
-      emlrtDynamicBoundsCheckR2012b(i, 1, 12, &e_emlrtBCI, sp);
+    if (((int32_T)(b_static->n_axis + 1.0) < 1) || ((int32_T)(b_static->n_axis +
+          1.0) > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)(b_static->n_axis + 1.0), 1, 12,
+        &e_emlrtBCI, sp);
     }
 
-    i -= 2;
+    i = (int32_T)(b_static->n_axis + 1.0) - 2;
     k = 11;
   }
 
@@ -977,8 +941,8 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
 
   for (k = 0; k < 6; k++) {
     y = 0.0;
-    for (i1 = 0; i1 < 6; i1++) {
-      y += dyn->C[k + 6 * i1] * qd[i1];
+    for (loop_ub = 0; loop_ub < 6; loop_ub++) {
+      y += dyn->C[k + 6 * loop_ub] * qd[loop_ub];
     }
 
     b_scaledOptVec[k] = (((-(((scaledOptVec[(int32_T)b_static->f_asym_idx[k] - 1]
@@ -991,8 +955,8 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
 
   for (k = 0; k < 6; k++) {
     y = 0.0;
-    for (i1 = 0; i1 < 6; i1++) {
-      y += dyn->M_inverse[k + 6 * i1] * b_scaledOptVec[i1];
+    for (loop_ub = 0; loop_ub < 6; loop_ub++) {
+      y += dyn->M_inverse[k + 6 * loop_ub] * b_scaledOptVec[loop_ub];
     }
 
     qd[k] = y;
@@ -1007,19 +971,18 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
   const real_T scaledOptVec[31], const struct0_T *b_static, struct1_T *dyn,
   real_T x_dot[12], real_T tau_m[6])
 {
-  int32_T loop_ub;
+  emlrtStack st;
+  real_T b_x_data[12];
+  real_T x_data[12];
+  real_T b_scaledOptVec[6];
+  real_T b_x[6];
+  real_T f_sign[6];
+  real_T qd[6];
+  real_T d;
+  int32_T b_loop_ub;
   int32_T i;
   int32_T k;
-  int32_T b_loop_ub;
-  real_T x_data[12];
-  real_T qd[6];
-  int32_T i1;
-  real_T b_x_data[12];
-  real_T f_sign[6];
-  real_T b_x[6];
-  real_T d;
-  real_T b_scaledOptVec[6];
-  emlrtStack st;
+  int32_T loop_ub;
   st.prev = sp;
   st.tls = sp->tls;
   memcpy(&x_dot[0], &b_static->x_init[0], 12U * sizeof(real_T));
@@ -1042,14 +1005,16 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
       emlrtIntegerCheckR2012b(b_static->n_axis, &b_emlrtDCI, sp);
     }
 
-    loop_ub = (int32_T)b_static->n_axis;
-    if ((loop_ub < 1) || (loop_ub > 12)) {
-      emlrtDynamicBoundsCheckR2012b(loop_ub, 1, 12, &emlrtBCI, sp);
+    if (((int32_T)b_static->n_axis < 1) || ((int32_T)b_static->n_axis > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)b_static->n_axis, 1, 12, &emlrtBCI,
+        sp);
     }
+
+    loop_ub = (int32_T)b_static->n_axis;
   }
 
-  if (6 != loop_ub) {
-    emlrtSubAssignSizeCheck1dR2017a(6, loop_ub, &emlrtECI, sp);
+  if (6 != (int8_T)loop_ub) {
+    emlrtSubAssignSizeCheck1dR2017a(6, (int8_T)loop_ub, &emlrtECI, sp);
   }
 
   /*  angle */
@@ -1062,19 +1027,19 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
       emlrtIntegerCheckR2012b(b_static->n_axis + 1.0, &c_emlrtDCI, sp);
     }
 
-    i = (int32_T)(b_static->n_axis + 1.0);
-    if ((i < 1) || (i > 12)) {
-      emlrtDynamicBoundsCheckR2012b(i, 1, 12, &b_emlrtBCI, sp);
+    if (((int32_T)(b_static->n_axis + 1.0) < 1) || ((int32_T)(b_static->n_axis +
+          1.0) > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)(b_static->n_axis + 1.0), 1, 12,
+        &b_emlrtBCI, sp);
     }
 
-    i--;
+    i = (int32_T)(b_static->n_axis + 1.0) - 1;
     k = 11;
   }
 
   b_loop_ub = k - i;
-  k = b_loop_ub + 1;
-  if (6 != k) {
-    emlrtSubAssignSizeCheck1dR2017a(6, k, &b_emlrtECI, sp);
+  if (6 != (int8_T)(b_loop_ub + 1)) {
+    emlrtSubAssignSizeCheck1dR2017a(6, (int8_T)(b_loop_ub + 1), &b_emlrtECI, sp);
   }
 
   for (k = 0; k <= b_loop_ub; k++) {
@@ -1086,77 +1051,61 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
   }
 
   /*  velocity */
-  /*  size(x_dot) */
-  /*  size(q_r) */
-  /*  size(q_r_d1) */
-  /*  size(tau_dist) */
-  /*  size(tau_ff) */
-  /*  size(q) */
-  /*  size(qd) */
-  /*  disable feed forward */
-  /*  tau_ff = 0; */
-  /*  phi_r_m = u * phi_r; */
-  /*  phi_r_m_d1 = u * phi_r_d1; */
   /*  override with values for optimisation */
   /*  use the nominal model for the feed forward terms */
   /*  friction */
   for (k = 0; k < 6; k++) {
-    if (b_static->f_vis_idx[k] != (int32_T)muDoubleScalarFloor
-        (b_static->f_vis_idx[k])) {
-      emlrtIntegerCheckR2012b(b_static->f_vis_idx[k], &g_emlrtDCI, sp);
+    d = b_static->f_vis_idx[k];
+    if (d != (int32_T)muDoubleScalarFloor(d)) {
+      emlrtIntegerCheckR2012b(d, &g_emlrtDCI, sp);
     }
 
-    i1 = (int32_T)b_static->f_vis_idx[k];
-    if ((i1 < 1) || (i1 > 31)) {
-      emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &f_emlrtBCI, sp);
-    }
-  }
-
-  for (k = 0; k < 6; k++) {
-    if (b_static->f_coul_idx[k] != (int32_T)muDoubleScalarFloor
-        (b_static->f_coul_idx[k])) {
-      emlrtIntegerCheckR2012b(b_static->f_coul_idx[k], &h_emlrtDCI, sp);
-    }
-
-    i1 = (int32_T)b_static->f_coul_idx[k];
-    if ((i1 < 1) || (i1 > 31)) {
-      emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &g_emlrtBCI, sp);
+    if (((int32_T)d < 1) || ((int32_T)d > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)d, 1, 31, &f_emlrtBCI, sp);
     }
   }
 
   for (k = 0; k < 6; k++) {
-    if (b_static->f_a_idx[k] != (int32_T)muDoubleScalarFloor(b_static->f_a_idx[k]))
-    {
-      emlrtIntegerCheckR2012b(b_static->f_a_idx[k], &i_emlrtDCI, sp);
+    d = b_static->f_coul_idx[k];
+    if (d != (int32_T)muDoubleScalarFloor(d)) {
+      emlrtIntegerCheckR2012b(d, &h_emlrtDCI, sp);
     }
 
-    i1 = (int32_T)b_static->f_a_idx[k];
-    if ((i1 < 1) || (i1 > 31)) {
-      emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &h_emlrtBCI, sp);
-    }
-  }
-
-  for (k = 0; k < 6; k++) {
-    if (b_static->f_b_idx[k] != (int32_T)muDoubleScalarFloor(b_static->f_b_idx[k]))
-    {
-      emlrtIntegerCheckR2012b(b_static->f_b_idx[k], &j_emlrtDCI, sp);
-    }
-
-    i1 = (int32_T)b_static->f_b_idx[k];
-    if ((i1 < 1) || (i1 > 31)) {
-      emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &i_emlrtBCI, sp);
+    if (((int32_T)d < 1) || ((int32_T)d > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)d, 1, 31, &g_emlrtBCI, sp);
     }
   }
 
   for (k = 0; k < 6; k++) {
-    if (b_static->f_asym_idx[k] != (int32_T)muDoubleScalarFloor
-        (b_static->f_asym_idx[k])) {
-      emlrtIntegerCheckR2012b(b_static->f_asym_idx[k], &k_emlrtDCI, sp);
+    d = b_static->f_a_idx[k];
+    if (d != (int32_T)muDoubleScalarFloor(d)) {
+      emlrtIntegerCheckR2012b(d, &i_emlrtDCI, sp);
     }
 
-    i1 = (int32_T)b_static->f_asym_idx[k];
-    if ((i1 < 1) || (i1 > 31)) {
-      emlrtDynamicBoundsCheckR2012b(i1, 1, 31, &j_emlrtBCI, sp);
+    if (((int32_T)d < 1) || ((int32_T)d > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)d, 1, 31, &h_emlrtBCI, sp);
+    }
+  }
+
+  for (k = 0; k < 6; k++) {
+    d = b_static->f_b_idx[k];
+    if (d != (int32_T)muDoubleScalarFloor(d)) {
+      emlrtIntegerCheckR2012b(d, &j_emlrtDCI, sp);
+    }
+
+    if (((int32_T)d < 1) || ((int32_T)d > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)d, 1, 31, &i_emlrtBCI, sp);
+    }
+  }
+
+  for (k = 0; k < 6; k++) {
+    d = b_static->f_asym_idx[k];
+    if (d != (int32_T)muDoubleScalarFloor(d)) {
+      emlrtIntegerCheckR2012b(d, &k_emlrtDCI, sp);
+    }
+
+    if (((int32_T)d < 1) || ((int32_T)d > 31)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)d, 1, 31, &j_emlrtBCI, sp);
     }
   }
 
@@ -1165,9 +1114,10 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
     emlrtIntegerCheckR2012b(b_static->m_pay_idx, &d_emlrtDCI, sp);
   }
 
-  k = (int32_T)b_static->m_pay_idx;
-  if ((k < 1) || (k > 31)) {
-    emlrtDynamicBoundsCheckR2012b(k, 1, 31, &c_emlrtBCI, sp);
+  if (((int32_T)b_static->m_pay_idx < 1) || ((int32_T)b_static->m_pay_idx > 31))
+  {
+    emlrtDynamicBoundsCheckR2012b((int32_T)b_static->m_pay_idx, 1, 31,
+      &c_emlrtBCI, sp);
   }
 
   /*  calculate gravity, coriolis, inertia */
@@ -1220,9 +1170,9 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
   }
 
   st.site = &g_emlrtRSI;
-  model_payload(&st, *(real_T (*)[6])&x_data[0], *(real_T (*)[6])&b_x_data[0],
-                scaledOptVec[(int32_T)b_static->m_pay_idx - 1], dyn->M_inverse,
-                dyn->C, dyn->G);
+  robot_dynamics(&st, *(real_T (*)[6])&x_data[0], *(real_T (*)[6])&b_x_data[0],
+                 scaledOptVec[(int32_T)b_static->m_pay_idx - 1], dyn->M_inverse,
+                 dyn->C, dyn->G);
 
   /*  friction torque */
   /*  continous differentiable sign of the link velocity */
@@ -1234,13 +1184,6 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
     f_sign[k] = muDoubleScalarTanh(b_static->s_f_ode[k] * x_data[k]);
   }
 
-  /*  friction model 2 */
-  /*  Ding, */
-  /*  Nonlinear Friction and Dynamical Identification for a Robot */
-  /*  Manipulator with Improved Cuckoo Search Algorithm */
-  /*  OR */
-  /*  Grotjahn */
-  /*  Friction and rigid body identification of robot dynamics */
   for (k = 0; k <= b_loop_ub; k++) {
     x_data[k] = x[i + k];
   }
@@ -1273,10 +1216,12 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
       emlrtIntegerCheckR2012b(b_static->n_axis, &e_emlrtDCI, sp);
     }
 
-    loop_ub = (int32_T)b_static->n_axis;
-    if ((loop_ub < 1) || (loop_ub > 12)) {
-      emlrtDynamicBoundsCheckR2012b(loop_ub, 1, 12, &d_emlrtBCI, sp);
+    if (((int32_T)b_static->n_axis < 1) || ((int32_T)b_static->n_axis > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)b_static->n_axis, 1, 12,
+        &d_emlrtBCI, sp);
     }
+
+    loop_ub = (int32_T)b_static->n_axis;
   }
 
   if (loop_ub != 6) {
@@ -1296,12 +1241,13 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
       emlrtIntegerCheckR2012b(b_static->n_axis + 1.0, &f_emlrtDCI, sp);
     }
 
-    i = (int32_T)(b_static->n_axis + 1.0);
-    if ((i < 1) || (i > 12)) {
-      emlrtDynamicBoundsCheckR2012b(i, 1, 12, &e_emlrtBCI, sp);
+    if (((int32_T)(b_static->n_axis + 1.0) < 1) || ((int32_T)(b_static->n_axis +
+          1.0) > 12)) {
+      emlrtDynamicBoundsCheckR2012b((int32_T)(b_static->n_axis + 1.0), 1, 12,
+        &e_emlrtBCI, sp);
     }
 
-    i -= 2;
+    i = (int32_T)(b_static->n_axis + 1.0) - 2;
     k = 11;
   }
 
@@ -1312,8 +1258,8 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
 
   for (k = 0; k < 6; k++) {
     d = 0.0;
-    for (i1 = 0; i1 < 6; i1++) {
-      d += dyn->C[k + 6 * i1] * qd[i1];
+    for (loop_ub = 0; loop_ub < 6; loop_ub++) {
+      d += dyn->C[k + 6 * loop_ub] * qd[loop_ub];
     }
 
     b_scaledOptVec[k] = (((-(((scaledOptVec[(int32_T)b_static->f_asym_idx[k] - 1]
@@ -1325,8 +1271,8 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
 
   for (k = 0; k < 6; k++) {
     d = 0.0;
-    for (i1 = 0; i1 < 6; i1++) {
-      d += dyn->M_inverse[k + 6 * i1] * b_scaledOptVec[i1];
+    for (loop_ub = 0; loop_ub < 6; loop_ub++) {
+      d += dyn->M_inverse[k + 6 * loop_ub] * b_scaledOptVec[loop_ub];
     }
 
     qd[k] = d;

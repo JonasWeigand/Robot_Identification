@@ -5,7 +5,7 @@
  *
  * runge_kutta_4_types.h
  *
- * Code generation for function 'runge_kutta_4_types'
+ * Code generation for function 'runge_kutta_4'
  *
  */
 
@@ -13,6 +13,7 @@
 
 /* Include files */
 #include "rtwtypes.h"
+#include "emlrt.h"
 
 /* Type Definitions */
 #ifndef typedef_struct0_T
