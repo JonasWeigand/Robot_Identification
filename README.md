@@ -21,7 +21,7 @@ MATLAB global optimization toolbox for solver surrogate_opt. Obligatory for this
 
 MATLAB parallel computing toolbox for faster solution of the surrogate solver. Optional.
 
-MATLAB Coder to compile the nonlinear differential equation. 
+MATLAB coder to compile the nonlinear differential equation. 
 Optional, coder is only required if the file is updated.
 
 MATLAB symbolic toolbox and Peter Corke Robotics toolbox for update of the robot model.
