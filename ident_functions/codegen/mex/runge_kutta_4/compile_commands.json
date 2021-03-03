@@ -1,0 +1,146 @@
+[
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  runge_kutta_4_data.c -o build/glnxa64/runge_kutta_4_data.o",
+    "file": "runge_kutta_4_data.c",
+    "output": "build/glnxa64/runge_kutta_4_data.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  rt_nonfinite.c -o build/glnxa64/rt_nonfinite.o",
+    "file": "rt_nonfinite.c",
+    "output": "build/glnxa64/rt_nonfinite.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  runge_kutta_4_initialize.c -o build/glnxa64/runge_kutta_4_initialize.o",
+    "file": "runge_kutta_4_initialize.c",
+    "output": "build/glnxa64/runge_kutta_4_initialize.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  runge_kutta_4_terminate.c -o build/glnxa64/runge_kutta_4_terminate.o",
+    "file": "runge_kutta_4_terminate.c",
+    "output": "build/glnxa64/runge_kutta_4_terminate.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  runge_kutta_4.c -o build/glnxa64/runge_kutta_4.o",
+    "file": "runge_kutta_4.c",
+    "output": "build/glnxa64/runge_kutta_4.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  robot_dynamics.c -o build/glnxa64/robot_dynamics.o",
+    "file": "robot_dynamics.c",
+    "output": "build/glnxa64/robot_dynamics.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  inertia_100.c -o build/glnxa64/inertia_100.o",
+    "file": "inertia_100.c",
+    "output": "build/glnxa64/inertia_100.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  coriolis_100.c -o build/glnxa64/coriolis_100.o",
+    "file": "coriolis_100.c",
+    "output": "build/glnxa64/coriolis_100.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  inertia_125.c -o build/glnxa64/inertia_125.o",
+    "file": "inertia_125.c",
+    "output": "build/glnxa64/inertia_125.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  coriolis_125.c -o build/glnxa64/coriolis_125.o",
+    "file": "coriolis_125.c",
+    "output": "build/glnxa64/coriolis_125.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  inertia_150.c -o build/glnxa64/inertia_150.o",
+    "file": "inertia_150.c",
+    "output": "build/glnxa64/inertia_150.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  coriolis_150.c -o build/glnxa64/coriolis_150.o",
+    "file": "coriolis_150.c",
+    "output": "build/glnxa64/coriolis_150.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  inertia_175.c -o build/glnxa64/inertia_175.o",
+    "file": "inertia_175.c",
+    "output": "build/glnxa64/inertia_175.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  coriolis_175.c -o build/glnxa64/coriolis_175.o",
+    "file": "coriolis_175.c",
+    "output": "build/glnxa64/coriolis_175.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  inertia_200.c -o build/glnxa64/inertia_200.o",
+    "file": "inertia_200.c",
+    "output": "build/glnxa64/inertia_200.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  coriolis_200.c -o build/glnxa64/coriolis_200.o",
+    "file": "coriolis_200.c",
+    "output": "build/glnxa64/coriolis_200.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  mpower.c -o build/glnxa64/mpower.o",
+    "file": "mpower.c",
+    "output": "build/glnxa64/mpower.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  eml_int_forloop_overflow_check.c -o build/glnxa64/eml_int_forloop_overflow_check.o",
+    "file": "eml_int_forloop_overflow_check.c",
+    "output": "build/glnxa64/eml_int_forloop_overflow_check.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  warning.c -o build/glnxa64/warning.o",
+    "file": "warning.c",
+    "output": "build/glnxa64/warning.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  interface/_coder_runge_kutta_4_api.c -o build/glnxa64/_coder_runge_kutta_4_api.o",
+    "file": "interface/_coder_runge_kutta_4_api.c",
+    "output": "build/glnxa64/_coder_runge_kutta_4_api.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  interface/_coder_runge_kutta_4_mex.c -o build/glnxa64/_coder_runge_kutta_4_mex.o",
+    "file": "interface/_coder_runge_kutta_4_mex.c",
+    "output": "build/glnxa64/_coder_runge_kutta_4_mex.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  nonlinear_differential_model.c -o build/glnxa64/nonlinear_differential_model.o",
+    "file": "nonlinear_differential_model.c",
+    "output": "build/glnxa64/nonlinear_differential_model.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  interface/_coder_runge_kutta_4_info.c -o build/glnxa64/_coder_runge_kutta_4_info.o",
+    "file": "interface/_coder_runge_kutta_4_info.c",
+    "output": "build/glnxa64/_coder_runge_kutta_4_info.o"
+  },
+  {
+    "directory": "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/codegen/mex/runge_kutta_4",
+    "command": "/usr/bin/gcc -fexceptions -fPIC -fno-omit-frame-pointer -pthread -D_GNU_SOURCE -DMATLAB_MEX_FILE  -O2 -fwrapv -DNDEBUG -std=c99 -I \".\" -I \"/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions\" -I \"./interface\" -I \"/usr/local/MATLAB/R2020b/extern/include\" -I \".\" -DMODEL=runge_kutta_4_mex -c  /usr/local/MATLAB/R2020b/extern/version/c_mexapi_version.c -o build/glnxa64/c_mexapi_version.o",
+    "file": "/usr/local/MATLAB/R2020b/extern/version/c_mexapi_version.c",
+    "output": "build/glnxa64/c_mexapi_version.o"
+  }
+]

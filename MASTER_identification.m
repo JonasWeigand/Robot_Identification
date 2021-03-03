@@ -53,7 +53,7 @@ enable_disturbance_torque       = false;
 % compute simulator using MEX files
 % MEX files must be recompiled, if a different data intervall length is
 % applied
-enable_MEX                      = false;
+enable_MEX                      = true;
 
 % offset the cost function for the first x seconds
 % increases robustness to unknown initial states of the robot
@@ -95,7 +95,7 @@ qd_update_threshold             = deg2rad(2);
 opt_surrogate = optimoptions('surrogateopt');
 opt_surrogate.Display = 'iter';
 opt_surrogate.MaxTime = 60;
-opt_surrogate.MaxFunctionEvaluations = 100;
+opt_surrogate.MaxFunctionEvaluations = 200;
 opt_surrogate.MinSampleDistance = 1e-1;
 opt_surrogate.UseParallel = true;
 
