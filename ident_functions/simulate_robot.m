@@ -8,10 +8,6 @@ static.phi_r_d1     = z.sim.phi_r_all_d1';    % reference link velocity
 static.tau_dist     = z.sim.tau_dist';        % disturbance torque
 static.tau_ff       = z.sim.tau_ff_all';      % feed forward torque
 
-if not(z.enable_ff_torque)
-    static.tau_ff(:) = 0;
-end
-
 % axis dependend parameters
 static.K_pos_eff    = z.para.K_pos_eff;     % position control parameter
 static.K_vel_eff    = z.para.K_vel_eff;     % veclotiy control parameter

@@ -1,10 +1,10 @@
 function z = initialise_model(z, enable_disturbance)
 
-n_axis = z.n_axis;
-nt_sim = z.sim.nt_sim;
+n_axis                      = z.n_axis;
+nt_sim                      = z.sim.nt_sim;
 
-time_cont_data = z.sim.time_cont_data;
-time_cont_sim  = z.sim.time_cont_sim;
+time_cont_data              = z.sim.time_cont_data;
+time_cont_sim               = z.sim.time_cont_sim;
 
 
 z.sim.tau_g_all             = zeros(nt_sim, n_axis);
@@ -26,8 +26,20 @@ z.sim.tau_a_init            = zeros(1, n_axis);
 z.sim.tau_ff_init           = zeros(1, n_axis);
 
 
+if not(z.enable_ff_torque)
+    z.tau_ff_all(:) = 0;
+end
+
+
+
+
+
+
 for k_ax = 1:n_axis
     
+    
+    z.tau_ff_all(k_ax,:) = z.tau_ff_all(k_ax,:) + z.tau_ff_init(k_ax);
+
     z.sim.tau_g_all(:,k_ax)      = interp1(time_cont_data, z.tau_g_all(k_ax,:), time_cont_sim);     % gravity
     z.sim.tau_a_all(:,k_ax)      = interp1(time_cont_data, z.tau_a_all(k_ax,:), time_cont_sim);     % acceleration
     z.sim.tau_c_all(:,k_ax)      = interp1(time_cont_data, z.tau_c_all(k_ax,:), time_cont_sim);     % coriolis & coulomb
@@ -42,8 +54,7 @@ for k_ax = 1:n_axis
     z.sim.phi_r_all_d2(:,k_ax)   = interp1(time_cont_data, z.ref_kin.phi_r_all_d2(:,k_ax), time_cont_sim);  % reference link acceleration
     z.sim.phi_r_all_d3(:,k_ax)   = interp1(time_cont_data, z.ref_kin.phi_r_all_d3(:,k_ax), time_cont_sim);  % reference link jerk
     z.sim.phi_r_all_d4(:,k_ax)   = interp1(time_cont_data, z.ref_kin.phi_r_all_d4(:,k_ax), time_cont_sim);  % reference link jerk derivative
-    
-    
+        
     if enable_disturbance
         Band = [0 1e-2];
         Range = 2e-1*[-1,1];
@@ -55,7 +66,6 @@ for k_ax = 1:n_axis
         z.sim.tau_dist(:,k_ax) = 0;
     end
 end
-
 
 
 end

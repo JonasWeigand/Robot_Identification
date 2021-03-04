@@ -22,20 +22,23 @@ clc
 
 
 
-% enable plots
+% enable motor torque plot, link position and link velocity
 enable_plot_ident_torque        = true;
 enable_plot_ident_pos           = true;
 enable_plot_ident_vel           = true;
+
+% select which axis to plots
+% integers for each joints, from 1 to 6
+n_axis_plot                     = [1, 2, 3];
+
+% print results with tikz picture for latex files
+enable_print_results_tikz       = false;
 
 % print identified parameters in command line
 enable_command_line_res         = true;
 
 % print bounds for the identified parameters in command line
 enable_command_line_bounds      = false;
-
-% select which axis to plots
-% integers for each joints, from 1 to 6
-n_axis_plot                     = [1, 2, 3];
 
 % load recorded data or compare with a simulated model
 enable_load_recorded_data       = true;
@@ -72,13 +75,12 @@ enable_warm_start_ident         = true;
 % percentage of last trail points for the optimizer to use
 keep_last_points                = 0.8;
 
-% print results with tikz
-enable_print_results_tikz       = false;
+
 
 % enable feed forward model in the identification
 % required to apply different models in the identification 
 % and the feed forward torque
-enable_ff_torque                = false;
+enable_ff_torque                = true;
 
 % enable fixed integer classes for payload identification
 enable_mixed_integer_opt        = false;
@@ -105,9 +107,24 @@ opt_surrogate.UseParallel = true;
 %  ------------- LOAD RECORDED DATA ---------------------------------------
 %  ------------------------------------------------------------------------
 
+% '2020-10-21 10s FF A 08ms' - identification trajectory, 
+% '2020-10-21 10s FF A 08ms' - frist validation trajectory,
+% '2020-10-21 10s FF A 08ms' - second validation trajectory,
+% recorded on 21 october 2020, 10 seconds duration, feedforward active, 
+% 800 microseconds sample time  
 
-z = load('data/data_recorded.mat');
 
+trajectory_name = '2020-10-21 10s FF A 08ms';
+
+z = load(['data/recorded_trajectories/',trajectory_name,'/data.mat']);
+
+
+% load additional static parameters
+addional_para = load('data/data_ref.mat', 'para');
+
+z.para.K_pos_eff    = addional_para.para.K_pos_eff;
+z.para.K_vel_eff    = addional_para.para.K_vel_eff;
+z.para.s_f          = addional_para.para.s_f;
 
 
 %% ------------------------------------------------------------------------
@@ -142,6 +159,7 @@ z = initialise_model(z, enable_disturbance_torque);
 %% ------------------------------------------------------------------------
 %  ------------- PARAMETER IDENTIFICATION ---------------------------------
 %  ------------------------------------------------------------------------
+
 
 
 
