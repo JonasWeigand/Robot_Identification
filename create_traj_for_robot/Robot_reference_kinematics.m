@@ -13,7 +13,7 @@ rad_to_deg = 180/pi;
 
 
 
-dt = 0.004;
+dt = 0.0008;
 tstart = 0;
 tend = 10;
 time_cont = tstart:dt:tend;

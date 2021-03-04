@@ -4,7 +4,8 @@ function MASTER_create_traj_for_robot
 %  --------------------------------- INIT ---------------------------------
 %  ------------------------------------------------------------------------
 
-addpath('create_traj_for_robot', 'data', 'robot_model')
+addpath('create_traj_for_robot', 'data', 'robot_model',...
+    'symbolic_code', 'ident_functions')
 
 
 % prepare data for real robot

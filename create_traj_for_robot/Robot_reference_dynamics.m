@@ -93,6 +93,9 @@ if enable_update_ff
         
     end
     
+    tau_ff_init = tau_ff_all(:,1);
+    tau_ff_all = tau_ff_all - tau_ff_init;
+    
     if enable_plot_ff_torque
         
         figure
@@ -127,7 +130,7 @@ para.K_pos_eff = K_pos_eff;
 save('data/data_ref.mat', 'para', 'robot', '-append')
 
 if enable_update_ff
-    save('data/data_ref.mat','tau_ff_all','-append');
+    save('data/data_ref.mat','tau_ff_all','tau_ff_init','-append');
 end
 end
 
