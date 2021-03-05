@@ -18,32 +18,32 @@
 #include <string.h>
 
 /* Variable Definitions */
-static emlrtRSInfo emlrtRSI = { 33,    /* lineNo */
+static emlrtRSInfo emlrtRSI = { 17,    /* lineNo */
   "runge_kutta_4",                     /* fcnName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/runge_kutta_4.m"/* pathName */
 };
 
-static emlrtRSInfo b_emlrtRSI = { 54,  /* lineNo */
+static emlrtRSInfo b_emlrtRSI = { 35,  /* lineNo */
   "runge_kutta_4",                     /* fcnName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/runge_kutta_4.m"/* pathName */
 };
 
-static emlrtRSInfo c_emlrtRSI = { 56,  /* lineNo */
+static emlrtRSInfo c_emlrtRSI = { 37,  /* lineNo */
   "runge_kutta_4",                     /* fcnName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/runge_kutta_4.m"/* pathName */
 };
 
-static emlrtRSInfo d_emlrtRSI = { 58,  /* lineNo */
+static emlrtRSInfo d_emlrtRSI = { 39,  /* lineNo */
   "runge_kutta_4",                     /* fcnName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/runge_kutta_4.m"/* pathName */
 };
 
-static emlrtRSInfo e_emlrtRSI = { 60,  /* lineNo */
+static emlrtRSInfo e_emlrtRSI = { 41,  /* lineNo */
   "runge_kutta_4",                     /* fcnName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/runge_kutta_4.m"/* pathName */
 };
 
-static emlrtRSInfo f_emlrtRSI = { 66,  /* lineNo */
+static emlrtRSInfo f_emlrtRSI = { 47,  /* lineNo */
   "runge_kutta_4",                     /* fcnName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/runge_kutta_4.m"/* pathName */
 };
@@ -70,22 +70,6 @@ void runge_kutta_4(runge_kutta_4StackData *SD, const emlrtStack *sp, const
   /*  Jonas Weigand */
   /*  07.12.2017 */
   /*  jonas.weigand@mv.uni-kl.de */
-  /*  define a max variable size for solver */
-  /*  NT_MAX = 1e5; */
-  /*  NX_MAX = 1e1; */
-  /*  NP_MAX = 1e1;´ */
-  /*  time_cont   = time_cont(1:nt); */
-  /*  x0          = x0(1:nx); */
-  /*  optVec      = optVec(1:np); */
-  /*  time fixed for  */
-  /*  t_start_sim         = 1.8; */
-  /*  t_end_sim           = 8.1; */
-  /*  time_cont_sim       = t_start_sim:0.0002:t_end_sim; */
-  /*  nt = 31501; */
-  /*  states fixed for */
-  /*  nx = 2 */
-  /*  parameters fixed for */
-  /*  np = 5 */
   /*  initialise */
   /*  get the number of timesteps */
   /*  get the length of a timestep */
@@ -102,13 +86,9 @@ void runge_kutta_4(runge_kutta_4StackData *SD, const emlrtStack *sp, const
   memcpy(&SD->f0.xSim[0], &x0[0], 12U * sizeof(real_T));
 
   /*  initialise temporary matrix z */
-  /*  the dimension "4" of matrix z is by definition of using rungeKutta4 */
-  /*  the dimension "2" corresponds to the number of outputs */
   memset(&z[0], 0, 48U * sizeof(real_T));
 
   /*  Core loop */
-  /*  for these equations, look for "Runge Kutta 4th. Order" */
-  /*  example source: https://de.wikipedia.org/wiki/Klassisches_Runge-Kutta-Verfahren */
   /*  for all timesteps but the last one */
   a_tmp = dt / 2.0;
   a = dt / 6.0;

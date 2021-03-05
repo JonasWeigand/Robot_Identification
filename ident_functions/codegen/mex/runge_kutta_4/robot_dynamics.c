@@ -691,7 +691,7 @@ void robot_dynamics(const emlrtStack *sp, const real_T q[6], const real_T qd[6],
   m_pay_low = muDoubleScalarFloor(unnamed_idx_0);
   m_pay_high = muDoubleScalarCeil(unnamed_idx_0);
   st.site = &h_emlrtRSI;
-  calc_model(&st, m_pay_low, q_global, qd, M_inverse, C, G, M_high);
+  calc_model(&st, m_pay_high, q_global, qd, M_inverse, C, G, M_high);
 
   /*  if m_pay is already an integer, then m_pay = m_pay_low = m_pay_high */
   /*  and the model does not need to be interpo */

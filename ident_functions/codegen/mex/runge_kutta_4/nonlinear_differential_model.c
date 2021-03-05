@@ -18,13 +18,13 @@
 #include <string.h>
 
 /* Variable Definitions */
-static emlrtRSInfo g_emlrtRSI = { 77,  /* lineNo */
+static emlrtRSInfo g_emlrtRSI = { 53,  /* lineNo */
   "nonlinear_differential_model",      /* fcnName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m"/* pathName */
 };
 
 static emlrtDCInfo b_emlrtDCI = { 24,  /* lineNo */
-  17,                                  /* colNo */
+  21,                                  /* colNo */
   "nonlinear_differential_model",      /* fName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
@@ -33,7 +33,7 @@ static emlrtDCInfo b_emlrtDCI = { 24,  /* lineNo */
 static emlrtBCInfo emlrtBCI = { 1,     /* iFirst */
   12,                                  /* iLast */
   24,                                  /* lineNo */
-  17,                                  /* colNo */
+  21,                                  /* colNo */
   "x",                                 /* aName */
   "nonlinear_differential_model",      /* fName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
@@ -41,7 +41,7 @@ static emlrtBCInfo emlrtBCI = { 1,     /* iFirst */
 };
 
 static emlrtDCInfo c_emlrtDCI = { 25,  /* lineNo */
-  15,                                  /* colNo */
+  19,                                  /* colNo */
   "nonlinear_differential_model",      /* fName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
   1                                    /* checkKind */
@@ -50,7 +50,7 @@ static emlrtDCInfo c_emlrtDCI = { 25,  /* lineNo */
 static emlrtBCInfo b_emlrtBCI = { 1,   /* iFirst */
   12,                                  /* iLast */
   25,                                  /* lineNo */
-  15,                                  /* colNo */
+  19,                                  /* colNo */
   "x",                                 /* aName */
   "nonlinear_differential_model",      /* fName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
@@ -88,7 +88,7 @@ static emlrtECInfo b_emlrtECI = { -1,  /* nDims */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m"/* pName */
 };
 
-static emlrtDCInfo e_emlrtDCI = { 100, /* lineNo */
+static emlrtDCInfo e_emlrtDCI = { 76,  /* lineNo */
   9,                                   /* colNo */
   "nonlinear_differential_model",      /* fName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
@@ -97,7 +97,7 @@ static emlrtDCInfo e_emlrtDCI = { 100, /* lineNo */
 
 static emlrtBCInfo d_emlrtBCI = { 1,   /* iFirst */
   12,                                  /* iLast */
-  100,                                 /* lineNo */
+  76,                                  /* lineNo */
   9,                                   /* colNo */
   "x_dot",                             /* aName */
   "nonlinear_differential_model",      /* fName */
@@ -106,13 +106,13 @@ static emlrtBCInfo d_emlrtBCI = { 1,   /* iFirst */
 };
 
 static emlrtECInfo c_emlrtECI = { -1,  /* nDims */
-  100,                                 /* lineNo */
+  76,                                  /* lineNo */
   1,                                   /* colNo */
   "nonlinear_differential_model",      /* fName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m"/* pName */
 };
 
-static emlrtDCInfo f_emlrtDCI = { 102, /* lineNo */
+static emlrtDCInfo f_emlrtDCI = { 78,  /* lineNo */
   7,                                   /* colNo */
   "nonlinear_differential_model",      /* fName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m",/* pName */
@@ -121,7 +121,7 @@ static emlrtDCInfo f_emlrtDCI = { 102, /* lineNo */
 
 static emlrtBCInfo e_emlrtBCI = { 1,   /* iFirst */
   12,                                  /* iLast */
-  102,                                 /* lineNo */
+  78,                                  /* lineNo */
   7,                                   /* colNo */
   "x_dot",                             /* aName */
   "nonlinear_differential_model",      /* fName */
@@ -130,7 +130,7 @@ static emlrtBCInfo e_emlrtBCI = { 1,   /* iFirst */
 };
 
 static emlrtECInfo d_emlrtECI = { -1,  /* nDims */
-  102,                                 /* lineNo */
+  78,                                  /* lineNo */
   1,                                   /* colNo */
   "nonlinear_differential_model",      /* fName */
   "/home/jonas/matlab/21-03-03 Online Robot Ident Git/ident_functions/nonlinear_differential_model.m"/* pName */
@@ -433,10 +433,6 @@ void b_nonlinear_differential_model(const emlrtStack *sp, real_T t_disc, const
 
   if (guard1) {
     dyn->count_rob_updates++;
-
-    /*  dyn.count_rob_updates = dyn.count_rob_updates + 1; */
-    /*  if t_disc == 1 || dyn.count_rob_updates > 125 */
-    /*          dyn.count_rob_updates = 1; */
     if (0 <= loop_ub - 1) {
       memcpy(&x_data[0], &x[0], loop_ub * sizeof(real_T));
     }
@@ -453,25 +449,6 @@ void b_nonlinear_differential_model(const emlrtStack *sp, real_T t_disc, const
       dyn->qd_update[k] = x_data[k];
     }
 
-    /*          % transfer from relative to global coordiantes */
-    /*          qs = [0 -pi/2 pi/2 0 0 0]; */
-    /*          q_global = q' + qs; */
-    /*  */
-    /*  */
-    /*          % mass matrix and inverse, q input dim [1, n_axis] */
-    /*          M = inertia( [], q_global ); */
-    /*          dyn.M_inverse = M^-1; */
-    /*  */
-    /*          % coriolis matrix, q and qd input dim [1, n_axis] */
-    /*          dyn.C = coriolis( [], q_global, qd' ); */
-    /*  */
-    /*          % gravity matrix, q input dim [1, n_axis] */
-    /*          dyn.G = gravload( [], q_global )'; */
-    /*  */
-    /*          % hydraulic counter weight */
-    /*          [tau_hyd, ~] = HydroSpring( q_global(2) ); */
-    /*  */
-    /*          dyn.G(2) = dyn.G(2) + tau_hyd; */
     if (0 <= loop_ub - 1) {
       memcpy(&x_data[0], &x[0], loop_ub * sizeof(real_T));
     }
@@ -804,10 +781,6 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
 
   if (guard1) {
     dyn->count_rob_updates++;
-
-    /*  dyn.count_rob_updates = dyn.count_rob_updates + 1; */
-    /*  if t_disc == 1 || dyn.count_rob_updates > 125 */
-    /*          dyn.count_rob_updates = 1; */
     if (0 <= loop_ub - 1) {
       memcpy(&x_data[0], &x[0], loop_ub * sizeof(real_T));
     }
@@ -824,25 +797,6 @@ void c_nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
       dyn->qd_update[k] = x_data[k];
     }
 
-    /*          % transfer from relative to global coordiantes */
-    /*          qs = [0 -pi/2 pi/2 0 0 0]; */
-    /*          q_global = q' + qs; */
-    /*  */
-    /*  */
-    /*          % mass matrix and inverse, q input dim [1, n_axis] */
-    /*          M = inertia( [], q_global ); */
-    /*          dyn.M_inverse = M^-1; */
-    /*  */
-    /*          % coriolis matrix, q and qd input dim [1, n_axis] */
-    /*          dyn.C = coriolis( [], q_global, qd' ); */
-    /*  */
-    /*          % gravity matrix, q input dim [1, n_axis] */
-    /*          dyn.G = gravload( [], q_global )'; */
-    /*  */
-    /*          % hydraulic counter weight */
-    /*          [tau_hyd, ~] = HydroSpring( q_global(2) ); */
-    /*  */
-    /*          dyn.G(2) = dyn.G(2) + tau_hyd; */
     if (0 <= loop_ub - 1) {
       memcpy(&x_data[0], &x[0], loop_ub * sizeof(real_T));
     }
@@ -1122,10 +1076,6 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
 
   /*  calculate gravity, coriolis, inertia */
   dyn->count_rob_updates++;
-
-  /*  dyn.count_rob_updates = dyn.count_rob_updates + 1; */
-  /*  if t_disc == 1 || dyn.count_rob_updates > 125 */
-  /*          dyn.count_rob_updates = 1; */
   if (0 <= loop_ub - 1) {
     memcpy(&x_data[0], &x[0], loop_ub * sizeof(real_T));
   }
@@ -1142,25 +1092,6 @@ void nonlinear_differential_model(const emlrtStack *sp, const real_T x[12],
     dyn->qd_update[k] = x_data[k];
   }
 
-  /*          % transfer from relative to global coordiantes */
-  /*          qs = [0 -pi/2 pi/2 0 0 0]; */
-  /*          q_global = q' + qs; */
-  /*  */
-  /*  */
-  /*          % mass matrix and inverse, q input dim [1, n_axis] */
-  /*          M = inertia( [], q_global ); */
-  /*          dyn.M_inverse = M^-1; */
-  /*  */
-  /*          % coriolis matrix, q and qd input dim [1, n_axis] */
-  /*          dyn.C = coriolis( [], q_global, qd' ); */
-  /*  */
-  /*          % gravity matrix, q input dim [1, n_axis] */
-  /*          dyn.G = gravload( [], q_global )'; */
-  /*  */
-  /*          % hydraulic counter weight */
-  /*          [tau_hyd, ~] = HydroSpring( q_global(2) ); */
-  /*  */
-  /*          dyn.G(2) = dyn.G(2) + tau_hyd; */
   if (0 <= loop_ub - 1) {
     memcpy(&x_data[0], &x[0], loop_ub * sizeof(real_T));
   }

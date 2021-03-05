@@ -11,7 +11,7 @@ m_pay(m_pay > 5) = 5;
 m_pay_low   = floor(m_pay);
 m_pay_high  = ceil(m_pay);
 
-[M_inverse_high, C_high, G_high, M_high] = calc_model(m_pay_low, q_global, qd);
+[M_inverse_high, C_high, G_high, M_high] = calc_model(m_pay_high, q_global, qd);
 
 % if m_pay is already an integer, then m_pay = m_pay_low = m_pay_high
 % and the model does not need to be interpo
