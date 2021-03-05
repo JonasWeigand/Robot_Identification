@@ -23,7 +23,7 @@ MATLAB parallel computing toolbox for faster solution of the surrogate solver. O
 
 MATLAB coder to compile the nonlinear differential equation. 
 Optional, coder is only required if the file is updated.
-Code is compiled in both, Windows and Ubuntu.
+Code is compiled in both, Windows 10 and Linux Mint 20.
 
 MATLAB symbolic toolbox and Peter Corke Robotics toolbox for update of the robot model.
 Optional, only required if the model is updated and MASTER_create_symbolic_robot file is executed.
