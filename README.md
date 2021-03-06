@@ -1,4 +1,4 @@
-# Robot_Identification
+# Robot Identification
 Real-time nonlinear parameter identification for an industrial robot. Code includes measurements and algorithm for a single batch optimization.
 This contribution is submitted to IROS 2021. The code features three entry points:
 
