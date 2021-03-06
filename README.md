@@ -1,6 +1,6 @@
 # Robot_Identification
 Real-time nonlinear parameter identification for an industrial robot. Code includes measurements and algorithm for a single batch optimization.
-This contribution is submitted to IROS 2021. The code supports three entry points:
+This contribution is submitted to IROS 2021. The code features three entry points:
 
 MASTER_identification 
 Starts the identification of parameters given a recorded movement.
@@ -13,11 +13,10 @@ MASTER_create_traj_for_robot
 Generates the trajectories and data needed for execution on the target system.
 Only required if a new experiment shell be designed and executed on the robot.
 
-
-Jonas Weigand <br \>
-Researcher at the Technical University Kaiserslautern, Chair of Machine Tools and Control Systems
-and at the German Research Center for Artificial Intelligence, Kaiserslautern.
-jonas.weigand@mv.uni-kl.de
+Jonas Weigand \
+Researcher at the Technical University Kaiserslautern, Chair of Machine Tools and Control Systems\
+and at the German Research Center for Artificial Intelligence, Kaiserslautern.\
+jonas.weigand@mv.uni-kl.de\
 March 2021
 
 # Requirements
@@ -32,6 +31,6 @@ MATLAB coder is required to compile the robot simulator including the nonlinear 
 Optional, coder is only required if the simulator is updated.
 Currently the code is compiled in both, windows and linux.
 
-MATLAB symbolic toolbox and robotics toolbox by Peter Corke are required to update the robot model.
-https://petercorke.com/toolboxes/robotics-toolbox/
+MATLAB symbolic toolbox and robotics toolbox by Peter Corke are required to update the robot model.\
+https://petercorke.com/toolboxes/robotics-toolbox/ \
 Optional, only required if the model is updated and if the MASTER_create_symbolic_robot file is executed.
