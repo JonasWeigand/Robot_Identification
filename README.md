@@ -1,29 +1,37 @@
 # Robot_Identification
-Real-time nonlinear parameter identification for an industrial robot.
+Real-time nonlinear parameter identification for an industrial robot. Code includes measurements and algorithm for a single batch optimization.
+This contribution is submitted to IROS 2021. The code supports three entry points:
 
 MASTER_identification 
-starts the identification of parameters given a recorded movement.
+Starts the identification of parameters given a recorded movement.
 
 MASTER_create_symbolic_robot 
-computes the symbolic solution of the robot model, including inertia, gravitational load and coriolis matrix.
+Computes the symbolic solution of the robot model, including inertia, gravitational load and coriolis matrix.
+Only required if the robot model is changed.
 
 MASTER_create_traj_for_robot 
-generates the trajectories and data needed for execution of of movement on the target system.
+Generates the trajectories and data needed for execution on the target system.
+Only required if a new experiment shell be designed and executed on the robot.
 
 
 Jonas Weigand
+Technical University Kaiserslautern, Chair of Machine Tools and Control Systems
+German Research Center for Artificial Intelligence, Kaiserslautern
 jonas.weigand@mv.uni-kl.de
-03.03.2021
+March 2021
 
 # Requirements
+All algorithms run in MATLAB.
 
-MATLAB global optimization toolbox for solver surrogate_opt. Obligatory for this solver.
+MATLAB global optimization toolbox is required for the surrogateopt solver. Obligatory for this implementation. 
+However, other global optimization solvers such as https://nlopt.readthedocs.io/en/latest/ can be applied.
 
-MATLAB parallel computing toolbox for faster solution of the surrogate solver. Optional.
+MATLAB parallel computing toolbox is applied for faster computation of the surrogate solver. Optional.
 
-MATLAB coder to compile the nonlinear differential equation. 
-Optional, coder is only required if the file is updated.
-Code is compiled in both, Windows 10 and Linux Mint 20.
+MATLAB coder is required to compile the robot simulator including the nonlinear differential equation. 
+Optional, coder is only required if the simulator is updated.
+Currently the code is compiled in both, windows and linux.
 
-MATLAB symbolic toolbox and Peter Corke Robotics toolbox for update of the robot model.
-Optional, only required if the model is updated and MASTER_create_symbolic_robot file is executed.
+MATLAB symbolic toolbox and robotics toolbox by Peter Corke are required to update the robot model.
+https://petercorke.com/toolboxes/robotics-toolbox/
+Optional, only required if the model is updated and if the MASTER_create_symbolic_robot file is executed.
