@@ -14,10 +14,10 @@ Generates the trajectories and data needed for execution on the target system.
 Only required if a new experiment shell be designed and executed on the robot.
 
 
-Jonas Weigand
-Technical University Kaiserslautern, Chair of Machine Tools and Control Systems
-German Research Center for Artificial Intelligence, Kaiserslautern
-jonas.weigand@mv.uni-kl.de
+Jonas Weigand \\
+Researcher at the Technical University Kaiserslautern, Chair of Machine Tools and Control Systems
+and at the German Research Center for Artificial Intelligence, Kaiserslautern. \\
+jonas.weigand@mv.uni-kl.de \\
 March 2021
 
 # Requirements
