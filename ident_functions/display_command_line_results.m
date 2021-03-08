@@ -16,42 +16,43 @@ scaledUB        = reshape(scaledUB, 1, []);
 format SHORTENG
 if enable_command_line_res
     disp('--- IDENTIFIED PARAMETERS ---')
-    disp(['Time for identification: ',num2str(t_end),' seconds.'])
+    fprintf('Time for identification: %1.3f seconds. \n', t_end)
+    disp('LB: Lower Bound, UB: Upper Bound, EST: Estimated Parameter')
     disp('--- FRICTION ---')
     if enable_command_line_bounds
-        disp(['Viscous LB : ',num2str(scaledLB(z.opt.f_vis_idx)),'.'])
+        fprintf('Viscous LB      :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledLB(z.opt.f_vis_idx))
     end
-    disp(['Viscous EST: ',num2str(scaledOptVec(z.opt.f_vis_idx)),'.'])
+    fprintf('Viscous EST     :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledOptVec(z.opt.f_vis_idx))
     if enable_command_line_bounds
-        disp(['Viscous UB : ',num2str(scaledUB(z.opt.f_vis_idx)),'.'])
-        disp(['Coulomb LB : ',num2str(scaledLB(z.opt.f_coul_idx)),'.'])
+        fprintf('Viscous UB      :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledUB(z.opt.f_vis_idx))
+        fprintf('Coulomb LB      :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledLB(z.opt.f_coul_idx))
     end
-    disp(['Coulomb EST: ',num2str(scaledOptVec(z.opt.f_coul_idx)),'.'])
+    fprintf('Coulomb EST     :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledOptVec(z.opt.f_coul_idx))
     if enable_command_line_bounds
-        disp(['Coulomb UB : ',num2str(scaledUB(z.opt.f_coul_idx)),'.'])
-        disp(['Degressive A LB : ',num2str(scaledLB(z.opt.f_a_idx)),'.'])
+        fprintf('Coulomb UB      :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledUB(z.opt.f_coul_idx))
+        fprintf('Degressive A LB :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledLB(z.opt.f_a_idx))
     end
-    disp(['Degressive A EST: ',num2str(scaledOptVec(z.opt.f_a_idx)),'.'])
+    fprintf('Degressive A EST:  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledOptVec(z.opt.f_a_idx))
     if enable_command_line_bounds
-        disp(['Degressive A UB : ',num2str(scaledUB(z.opt.f_a_idx)),'.'])
-        disp(['Degressive B LB : ',num2str(scaledLB(z.opt.f_b_idx)),'.'])
+        fprintf('Degressive A UB :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledUB(z.opt.f_a_idx))
+        fprintf('Degressive B LB :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledLB(z.opt.f_b_idx))
     end
-    disp(['Degressive B EST: ',num2str(scaledOptVec(z.opt.f_b_idx)),'.'])
+    fprintf('Degressive B EST:  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledOptVec(z.opt.f_b_idx))
     if enable_command_line_bounds
-        disp(['Degressive B UB : ',num2str(scaledUB(z.opt.f_b_idx)),'.'])
-        disp(['Asymmetrical LB : ',num2str(scaledLB(z.opt.f_asym_idx)),'.'])
+        fprintf('Degressive B UB :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledUB(z.opt.f_b_idx))
+        fprintf('Asymmetrical LB :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledLB(z.opt.f_asym_idx))
     end
-    disp(['Asymmetrical EST: ',num2str(scaledOptVec(z.opt.f_asym_idx)),'.'])
+    fprintf('Asymmetrical EST:  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledOptVec(z.opt.f_asym_idx))
     if enable_command_line_bounds
-        disp(['Asymmetrical UB : ',num2str(scaledUB(z.opt.f_asym_idx)),'.'])
+        fprintf('Asymmetrical UB :  %1.0f %1.0f %1.0f %1.0f %1.0f %1.0f\n',scaledUB(z.opt.f_asym_idx))
     end
     disp('--- PAYLOAD ---')
     if enable_command_line_bounds
-        disp(['Payload LB: ',num2str(75 + 25*scaledLB(z.opt.m_pay_idx)),'.'])
+        fprintf('Payload LB      : %1.0f kg\n',75 + 25*scaledLB(z.opt.m_pay_idx))
     end
-    disp(['Payload est: ',num2str(75 + 25*scaledOptVec(z.opt.m_pay_idx)),'.'])
+    fprintf('Payload EST     : %1.0f kg\n',75 + 25*scaledOptVec(z.opt.m_pay_idx))
     if enable_command_line_bounds
-        disp(['Payload UB: ',num2str(75 + 25*scaledUB(z.opt.m_pay_idx)),'.'])
+        fprintf('Payload UB      : %1.0f kg\n',75 + 25*scaledUB(z.opt.m_pay_idx))
     end
 end
 end

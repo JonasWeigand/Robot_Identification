@@ -3,7 +3,7 @@ function MASTER_identification
 %% Identify the parameters of an Industrial robot
 
 % Jonas Weigand
-% 03.03.2021
+% March 2021
 
 
 addpath('symbolic_code', 'ident_functions', 'data')
@@ -31,14 +31,11 @@ enable_plot_ident_vel           = true;
 % integers for each joints, from 1 to 6
 n_axis_plot                     = [1, 2, 3];
 
-% print results with tikz picture for latex files
-enable_print_results_tikz       = false;
-
 % print identified parameters in command line
 enable_command_line_res         = true;
 
 % print bounds for the identified parameters in command line
-enable_command_line_bounds      = false;
+enable_command_line_bounds      = true;
 
 % load recorded data or compare with a simulated model
 enable_load_recorded_data       = true;
@@ -74,7 +71,8 @@ enable_identification           = true;
 enable_warm_start_ident         = true;
 % percentage of last trail points for the optimizer to use
 keep_last_points                = 0.8;
-
+% limit the total number of points to not slow down the optimizer
+limit_total_points              = 300;
 
 
 % enable feed forward model in the identification
@@ -100,7 +98,8 @@ opt_surrogate.MaxTime = 60;
 opt_surrogate.MaxFunctionEvaluations = 200;
 opt_surrogate.MinSampleDistance = 1e-1;
 opt_surrogate.UseParallel = true;
-
+opt_surrogate.PlotFcn = '';          % 'surrogateoptplot' 'optimplotx',
+                                     % leave empty for none
 
 
 %% ------------------------------------------------------------------------
@@ -172,7 +171,8 @@ tic
 estOptVecAll = perform_identification(z, meas, time_cont_sim, x0, ...
     enable_warm_start_ident, enable_identification,...
     enable_mixed_integer_opt,...
-    keep_last_points, trueOptVecAll, initOptVecAll, ...
+    keep_last_points, limit_total_points,...
+    trueOptVecAll, initOptVecAll, ...
     lb, ub, opt_surrogate);
 
 t_end = toc;
@@ -256,10 +256,4 @@ if enable_plot_ident_vel
     end
     
 end
-if enable_print_results_tikz
-    
-    print_results; %#ok
-    
-end
-
 end

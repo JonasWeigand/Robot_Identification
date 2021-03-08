@@ -1,7 +1,8 @@
 function    estOptVecAll = perform_identification(z, meas, time_cont_sim, x0, ...
     enable_warm_start_ident, enable_identification,...
     enable_mixed_integer_opt,...
-    keep_last_points, trueOptVecAll, initOptVecAll, ...
+    keep_last_points, limit_total_points,...
+    trueOptVecAll, initOptVecAll, ...
     lb, ub, opt_surrogate)
 
 
@@ -20,7 +21,12 @@ if enable_identification
         n_keep_trails(n_keep_trails > n_trails) = n_trails;
         
         idx_rand_all                            = randperm(n_trails);
-        idx_rand_keep                           = sort(idx_rand_all(1:n_keep_trails));
+        idx_rand_keep                           = idx_rand_all(1:n_keep_trails);
+        
+        if numel(idx_rand_keep) >= limit_total_points
+            idx_rand_keep = idx_rand_keep(1:limit_total_points);
+        end
+        idx_rand_keep                           = sort(idx_rand_keep);  
         
         ident_results.trails.X                  = ident_results.trails.X(idx_rand_keep, :);
         ident_results.trails.Fval               = ident_results.trails.Fval(idx_rand_keep, :);

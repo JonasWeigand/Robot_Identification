@@ -2,7 +2,6 @@ function Robot_reference_kinematics
 
 
 enable_plots = false;
-enable_plot_int = false;
 enable_save_new_data = true;
 enforce_limits = true;
 
@@ -48,14 +47,9 @@ traj_name = 'data/ref_trajectories/d3d4bound_d3zero_F2_vest_grids20_T10_ts60';
 data_traj = load(traj_name);
 
 
-% data = load('Trajektorien/F2_v13_grids20_T30_ts200');
-% data = load('Trajektorien/F2_v6_grids12_T1_ts100');
-% data = load('Trajektorien/F2_v7_grids12_T3_ts200');
-
-
 % 19-10-2020
 % A - d3d4boundandzero_F2_v16_grids20_T10_ts50
-% B - d3d4boundandzero_F2_v17_grids20_T10_ts120 -> invert direction of axis 3
+% B - d3d4boundandzero_F2_v17_grids20_T10_ts120
 % C - d3d4bound_d3zero_F2_vest_grids20_T10_ts60
 
 T = tend;
@@ -533,8 +527,6 @@ if enable_save_new_data
         'data_traj','traj_name',...
         'time_data','ref_kin', 'n_axis', 'n_states_per_axis', 'n_states')
     
-    % do NOT append kinematics, instead delete *.mat file and create a new
-    % one
     
 end
 
