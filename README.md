@@ -35,21 +35,21 @@ Jonas Weigand \
 Researcher at the Technical University Kaiserslautern, Chair of Machine Tools and Control Systems\
 and at the German Research Center for Artificial Intelligence, Kaiserslautern.\
 ORCID: 0000-0001-5835-3106 \
-jonas.weigand@mv.uni-kl.de\
+jonas.weigand@mv.uni-kl.de
 
 Jonas Ulmen \
 Researcher at the Technical University Kaiserslautern, Chair of Control Systems\
-ulmen@eit.uni-kl.de\
+ulmen@eit.uni-kl.de
 
 Alexandre Janot \
 Research engineer at The French Aerospace Lab ONERA\
 ORCID: 0000-0003-1851-6454 \
-alexandre.janot@onera.fr\
+alexandre.janot@onera.fr
 
 Martin Ruskowski \
 Professor at the Technical University Kaiserslautern, Chair of Machine Tools and Control Systems\
 and at the German Research Center for Artificial Intelligence, Kaiserslautern.\
 ORCID: 0000-0002-6534-9057 \
-martin.ruskowski@mv.uni-kl.de\
+martin.ruskowski@mv.uni-kl.de
 
 March 2021
