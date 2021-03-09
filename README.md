@@ -13,12 +13,6 @@ Only required if the robot model is changed.
 Generates the trajectories and data needed for execution on the target system.
 Only required if a new experiment shell be designed and executed on the robot.
 
-Jonas Weigand \
-Researcher at the Technical University Kaiserslautern, Chair of Machine Tools and Control Systems\
-and at the German Research Center for Artificial Intelligence, Kaiserslautern.\
-jonas.weigand@mv.uni-kl.de\
-March 2021
-
 # Requirements
 All algorithms run in MATLAB.
 
@@ -34,3 +28,28 @@ Currently the code is compiled in both, windows and linux.
 **MATLAB Symbolic Math Toolbox** and **Robotics Toolbox by Peter Corke** are required to update the robot model.\
 https://petercorke.com/toolboxes/robotics-toolbox/ \
 Optional, only required if the model is updated and if the MASTER_create_symbolic_robot file is executed.
+
+# Contact Information
+
+Jonas Weigand \
+Researcher at the Technical University Kaiserslautern, Chair of Machine Tools and Control Systems\
+and at the German Research Center for Artificial Intelligence, Kaiserslautern.\
+ORCID: 0000-0001-5835-3106 \
+jonas.weigand@mv.uni-kl.de\
+
+Jonas Ulmen \
+Researcher at the Technical University Kaiserslautern, Chair of Control Systems\
+ulmen@eit.uni-kl.de\
+
+Alexandre Janot \
+Research engineer at The French Aerospace Lab ONERA\
+ORCID: 0000-0003-1851-6454 \
+alexandre.janot@onera.fr\
+
+Martin Ruskowski \
+Professor at the Technical University Kaiserslautern, Chair of Machine Tools and Control Systems\
+and at the German Research Center for Artificial Intelligence, Kaiserslautern.\
+ORCID: 0000-0002-6534-9057 \
+martin.ruskowski@mv.uni-kl.de\
+
+March 2021
