@@ -9,8 +9,8 @@ Starts the identification of parameters given a recorded movement.
 Computes the symbolic solution of the robot model, including inertia, gravitational load and coriolis matrix.
 Only required if the robot model is changed.
 
-**MASTER_create_traj_for_robot** \
-Generates the trajectories and data needed for execution on the target system.
+**MASTER_update_robot_model** \
+Updates the robot kinematics and dynamics model.
 Only required if a new experiment shell be designed and executed on the robot.
 
 # Requirements
