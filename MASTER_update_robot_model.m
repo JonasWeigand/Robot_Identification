@@ -4,7 +4,7 @@ addpath('create_traj_for_robot', 'data', 'robot_model',...
     'symbolic_code', 'ident_functions')
 
 
-% prepare data for real robot
+
 enable_update_kinematics                    = true;
 enable_update_dynamics                      = true;
 
