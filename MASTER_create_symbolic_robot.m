@@ -4,6 +4,7 @@ function MASTER_create_symbolic_robot
 
 
 
+
 % Jonas Weigand
 % jonas.weigand@mv.uni-kl.de
 % Chair of Machine Tools and Control Systems, TU Kaiserslautern, Germany
