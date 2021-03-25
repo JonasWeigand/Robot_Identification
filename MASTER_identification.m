@@ -22,6 +22,7 @@ clc
 
 
 
+
 % enable motor torque plot, link position and link velocity
 enable_plot_ident_torque        = true;
 enable_plot_ident_pos           = true;
