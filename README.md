@@ -3,7 +3,7 @@ Real-time nonlinear parameter identification for an industrial robot. Code inclu
 This contribution is submitted to IROS 2021. The code features three entry points:
 
 **MASTER_identification** \
-Starts the identification of parameters given a recorded movement.
+Starts the identification of parameters given a recorded movement. Recommended entry point.
 
 **MASTER_create_symbolic_robot** \
 Computes the symbolic solution of the robot model, including inertia, gravitational load and coriolis matrix.
@@ -14,7 +14,7 @@ Updates the robot kinematics and dynamics model.
 Only required if a new experiment shell be designed and executed on the robot.
 
 # Requirements
-All algorithms run in MATLAB.
+All algorithms run in MATLAB. Optionally, MATLAB calls compiled C-Code.
 
 **MATLAB Global Optimization Toolbox** is required for the surrogateopt solver. Obligatory for this implementation. 
 However, other global optimization solvers such as https://nlopt.readthedocs.io/en/latest/ can be applied.
