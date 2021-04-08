@@ -1,5 +1,4 @@
-function [z, time_cont_sim] = initialise_time(z, ...
-    enable_load_recorded_data, cost_fun_offset_sec)
+function [z, time_cont_sim] = initialise_time(z, cost_fun_offset_sec)
 
 t_start_sim         = 1.8;
 t_end_sim           = 8.2;
@@ -18,9 +17,6 @@ z.sim.time_disc_sim         = time_disc_sim;
 
 if dt_sim > 0.007
     warning('Low sample frequencies lead to an instable system.')
-end
-if t_start_sim > 0 && not( enable_load_recorded_data )
-    warning('Initial State is phrone to errors.')
 end
 
 z.cost_fun_offset = min( nt_sim, max(1, round(cost_fun_offset_sec / dt_sim)));
