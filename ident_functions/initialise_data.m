@@ -1,8 +1,5 @@
-function [meas, x0] = initialise_data(z, ...
-    enable_load_recorded_data, enable_noise)
+function [meas, x0] = initialise_data(z, enable_noise)
 
-
-if enable_load_recorded_data
     
     u                = z.para.u;
     time_cont_sim    = z.sim.time_cont_sim;
@@ -53,31 +50,10 @@ if enable_load_recorded_data
     meas.xAll           = xAllTrue;
     
     
-    
-    
-    for k_ax = 1:n_axis
-        z.sim.phi_r_m_all(:,k_ax)     = u(k_ax)*deg_to_rad* interp1(time_cont_data, rec.ref_pos_deg(k_ax, :), time_cont_sim)';
-        z.sim.phi_r_m_all_d1(:,k_ax)  = u(k_ax)*deg_to_rad* interp1(time_cont_data, rec.ref_vel_simple_deg_per_s(k_ax, :), time_cont_sim)';
-        
-        z.sim.phi_r_all(:,k_ax)       = deg_to_rad* interp1(time_cont_data, rec.ref_pos_deg(k_ax, :), time_cont_sim)';
-        z.sim.phi_r_all_d1(:,k_ax)    = deg_to_rad* interp1(time_cont_data, rec.ref_vel_simple_deg_per_s(k_ax, :), time_cont_sim)';
-    end
-    
-    
     x0 = [ pos_mot(:, 1); 
            vel_mot(:, 1)];
         
         
-    
-else
-    
-% TO DO if simulation is wanted
-    
-%     x0                      = zeros(n_axis*n_states_per_axis,1);
-%     odeFunAn                = @(t,x) ode_fun(t, x, trueOptVecAll{z.i_ax}, z);
-%     [xAllTrue, torqueTrue]  = rungeKutta4_disc(odeFunAn, time_cont_sim  , x0);
-    
-end
 
 
 
