@@ -38,9 +38,6 @@ enable_command_line_res         = true;
 % print bounds for the identified parameters in command line
 enable_command_line_bounds      = true;
 
-% load recorded data or compare with a simulated model
-enable_load_recorded_data       = true;
-
 % add additional noise to recorded or simulated data
 enable_additional_noise         = false;
 
@@ -140,8 +137,7 @@ z.enable_train_filt             = enable_train_filt;
 z.enable_ff_torque              = enable_ff_torque;
 
 
-[z, time_cont_sim] = initialise_time(z, ...
-    enable_load_recorded_data, cost_fun_offset_sec);
+[z, time_cont_sim] = initialise_time(z, cost_fun_offset_sec);
 
 z = initialise_model(z, enable_disturbance_torque);
 
@@ -149,8 +145,7 @@ z = initialise_model(z, enable_disturbance_torque);
     initOptVecAll, lb, ub] = initialise_optimization(z, ...
     enable_random_init);
 
-[meas, x0] = initialise_data(z, ...
-    enable_load_recorded_data, enable_additional_noise);
+[meas, x0] = initialise_data(z, enable_additional_noise);
 
 
 
